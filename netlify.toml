@@ -1,0 +1,3 @@
+[build]
+  command = "npm run build" # Usa o script "build" do package.json
+  publish = "dist"          # Diretório de saída padrão do Vite
