@@ -1,20 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Booking from './pages/Booking';
-import Admin from './pages/Admin';
+import { Navbar } from './components/Navbar';
+import { Home } from './pages/Home';
+import { Portfolio } from './pages/Portfolio';
+import { Scheduling } from './pages/Scheduling';
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-white">
         <Navbar />
-        <main className="w-full min-h-screen">
+        <main className="w-full">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/agendar" element={<Booking />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/agendamento" element={<Scheduling />} />
           </Routes>
         </main>
       </div>
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

@@ -1,61 +1,52 @@
+// Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Instagram, MessageCircle } from 'lucide-react';
+import { Camera, Calendar, Home, Instagram, Facebook, Mail } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa'; // Importando o ícone do WhatsApp
 
-const Navbar = () => {
+export function Navbar() {
   return (
-    <nav className="fixed left-[15%] top-0 h-full w-[280px] bg-white/95 backdrop-blur-sm shadow-lg flex flex-col items-center py-12 px-8 z-50">
-      {/* Logo */}
-      <div className="mb-12">
-        <img src="../src/assets/img/logo_transparente.png" alt="Logo" className="mx-auto mb-4" />
-        <h1 className="text-2xl font-light text-gray-800 text-center"></h1>
-      </div>
+    <nav className="fixed left-[5%] top-1/2 -translate-y-1/2 w-[9%] bg-white/80 backdrop-blur-sm z-50 rounded-2xl shadow-lg border border-gray-100 py-8 overflow-y-auto max-h-[90vh]">
+      <div className="flex flex-col items-center space-y-6">
+        {/* Logo */}
+        <Link to="/" className="flex flex-col items-center space-y-2">
+          <Camera className="h-8 w-8 text-gray-900" />
+          <span className="text-xs font-light tracking-wider text-center sm:text-sm">GraceFotografia</span>
+        </Link>
 
-      {/* Links de navegação */}
-      <div className="flex flex-col space-y-6 items-center w-full">
-        <Link
-          to="/"
-          className="text-lg font-light text-gray-500 hover:text-rose-400 transition-colors uppercase tracking-wide"
-        >
-          Início
-        </Link>
-        <Link
-          to="/sobre"
-          className="text-lg font-light text-gray-500 hover:text-rose-400 transition-colors uppercase tracking-wide"
-        >
-          Sobre Mim
-        </Link>
-        <Link
-          to="/agendar"
-          className="text-lg font-light text-gray-500 hover:text-rose-400 transition-colors uppercase tracking-wide"
-        >
-          Orçamento
-        </Link>
-        <Link
-          to="/produtos"
-          className="text-lg font-light text-gray-500 hover:text-rose-400 transition-colors uppercase tracking-wide"
-        >
-          Produtos
-        </Link>
-        <Link
-          to="/contato"
-          className="text-lg font-light text-gray-500 hover:text-rose-400 transition-colors uppercase tracking-wide"
-        >
-          Contato
-        </Link>
-      </div>
+        {/* Links Principais */}
+        <div className="flex flex-col items-center space-y-4">
+          <Link to="/" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
+            <Home className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="text-[10px] sm:text-xs">Início</span>
+          </Link>
+          <Link to="/portfolio" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
+            <Camera className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="text-[10px] sm:text-xs">Portfólio</span>
+          </Link>
+          <Link to="/agendamento" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
+            <Calendar className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="text-[10px] sm:text-xs">Agendamento</span>
+          </Link>
+        </div>
 
-      {/* Social links */}
-      <div className="mt-auto flex space-x-4">
-        <a href="#" className="text-gray-500 hover:text-rose-400 transition-colors">
-          <Instagram size={20} />
-        </a>
-        <a href="#" className="text-gray-500 hover:text-rose-400 transition-colors">
-          <MessageCircle size={20} />
-        </a>
+        {/* Redes Sociais */}
+        <div className="flex flex-col items-center space-y-4 pt-4 border-t border-gray-200 w-full">
+          <a href="https://www.instagram.com/gracefotografia_/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 group">
+            <Instagram className="h-5 w-5 group-hover:scale-110 transition-transform" />
+          </a>
+          <a href="https://web.facebook.com/gracefotografias" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 group">
+            <Facebook className="h-5 w-5 group-hover:scale-110 transition-transform" />
+          </a>
+          <a href="mailto:contato@gracefotografia.com" className="text-gray-600 hover:text-gray-900 group">
+            <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
+          </a>
+               {/* WhatsApp */}
+          <a href="https://wa.me/5515981055169" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-green-600 group">
+            <FaWhatsapp className="h-5 w-5 sm:h-6 sm:w-6 group-hover:scale-110 transition-transform" />
+          </a>
+        </div>
       </div>
     </nav>
   );
 }
-
-export default Navbar;
