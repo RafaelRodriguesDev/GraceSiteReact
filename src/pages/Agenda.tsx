@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Calendar, Clock, Send } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
-interface SchedulingForm {
+interface AgendaForm {
   name: string;
   email: string;
   phone: string;
@@ -12,7 +12,7 @@ interface SchedulingForm {
   message: string;
 }
 
-export function Scheduling() {
+export function Agenda() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -22,7 +22,7 @@ export function Scheduling() {
     setSubmitStatus('idle');
 
     const formData = new FormData(e.currentTarget);
-    const data: SchedulingForm = {
+    const data: AgendaForm = {
       name: formData.get('name') as string,
       email: formData.get('email') as string,
       phone: formData.get('phone') as string,

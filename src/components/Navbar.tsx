@@ -1,7 +1,7 @@
 // Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Calendar, Home, Instagram, Facebook, Mail } from 'lucide-react';
+import { Camera, Calendar, Home, Instagram, Facebook, Mail, Crown } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa'; // Importando o ícone do WhatsApp
 
 export function Navbar() {
@@ -19,6 +19,10 @@ export function Navbar() {
           <Link to="/" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
             <Home className="h-5 w-5 group-hover:scale-110 transition-transform" />
             <span className="text-[10px] sm:text-xs">Início</span>
+          </Link>
+          <Link to="/sobre" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
+            <Crown className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="text-[10px] sm:text-xs">Sobre</span>
           </Link>
           <Link to="/portfolio" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
             <Camera className="h-5 w-5 group-hover:scale-110 transition-transform" />

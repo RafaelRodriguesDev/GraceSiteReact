@@ -52,7 +52,7 @@ export function InstagramMosaic() {
 
       {/* Grid de imagens */}
       <div
-        className="absolute inset-0 overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.4, 0, 0.2, 1)]"
+        className="absolute inset-0 overflow-hidden transition-transform duration-700  ease-[cubic-bezier(0.4, 0, 0.2, 1)]"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
