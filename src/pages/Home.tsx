@@ -4,7 +4,7 @@ import { InstagramMosaic } from './InstagramMosaicv';
 
 export function Home() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen w-screen relative">
       {/* Mosaico de Fundo */}
       <InstagramMosaic />
 

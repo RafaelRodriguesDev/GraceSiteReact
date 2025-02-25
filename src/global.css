@@ -1,0 +1,7 @@
+/* src/global.css */
+@font-face {
+    font-family: 'HappyBirthday4';
+    src: url('/fonts/HappyBirthday4.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }

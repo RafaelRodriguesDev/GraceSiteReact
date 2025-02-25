@@ -10,8 +10,8 @@ export function Portfolio() {
             src="https://www.instagram.com/gracefotografia_/embed"
             className="w-full h-full border-none"
             title="Instagram Feed"
-            allowtransparency="true"
-            allowFullScreen="true"
+            allowTransparency={true}
+            allowFullScreen={true}
           />
         </div>
       </div>
