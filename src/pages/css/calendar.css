@@ -1,0 +1,48 @@
+/* calendar.css */
+
+/* Ajuste global para botões e texto em telas pequenas */
+@media (max-width: 640px) {
+    /* Reduzir o tamanho do título do mês/ano */
+    .fc-toolbar-title {
+      font-size: 1rem !important; /* Tamanho menor para o título */
+    }
+  
+    /* Reduzir o tamanho dos botões de navegação */
+    .fc-button {
+      font-size: 0.75rem !important; /* Tamanho menor para os botões */
+      padding: 0.25rem 0.5rem !important; /* Espaçamento interno reduzido */
+    }
+  
+    /* Reduzir o tamanho dos botões de visualização (Mês, Semana, Dia) */
+    .fc-button-group .fc-button {
+      font-size: 0.75rem !important;
+      padding: 0.25rem 0.5rem !important;
+    }
+  
+    /* Ajustar o espaçamento entre os botões */
+    .fc-button-group {
+      gap: 0.25rem !important;
+    }
+  
+    /* Ajustar o tamanho das células do calendário */
+    .fc-daygrid-day-frame {
+      height: auto !important; /* Altura automática para evitar esticamento */
+    }
+  
+    .fc-daygrid-day-top {
+      font-size: 0.75rem !important; /* Tamanho menor para o número do dia */
+      line-height: 1.2 !important; /* Espaçamento entre linhas reduzido */
+    }
+  
+    .fc-daygrid-day-events {
+      font-size: 0.75rem !important; /* Tamanho menor para os eventos */
+      margin-top: 0.25rem !important; /* Espaçamento reduzido */
+    }
+  
+    /* Limitar a altura máxima das células */
+    .fc-daygrid-day {
+      min-height: 60px !important; /* Altura mínima para as células */
+      max-height: 80px !important; /* Altura máxima para evitar esticamento */
+      overflow: hidden; /* Ocultar conteúdo que ultrapasse o limite */
+    }
+  }
