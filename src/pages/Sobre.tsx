@@ -1,25 +1,25 @@
 import React from 'react';
-import '../global.css';
-import '../background.css'; // Importa o CSS do fundo animado
+import { InstagramMosaic } from './InstagramMosaicv'; // Importa o componente InstagramMosaic
 
 export function Sobre() {
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-50 text-gray-900">
-      {/* Fundo Animado */}
-      <div className="background-animated absolute top-0 left-0 w-full h-full z-0"></div>
+    <div className="min-h-screen flex flex-col items-center relative">
+      {/* Fundo com InstagramMosaic */}
+      <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+        <InstagramMosaic />
+      </div>
 
-      {/* Conteúdo da Página */}
-      <div className="relative z-10 w-full max-w-[800px] mx-auto px-6 py-12">
+      {/* Conteúdo da Página com Fundo Branco */}
+      <div className="relative z-10 w-full max-w-[800px] mx-auto mt-10 px-6 py-12 bg-white rounded-lg shadow-lg">
         {/* Primeira Seção */}
-        <h1 className="text-5xl font-extrabold text-gray-900 text-center mb-6">_________________________________________</h1>
         
-        <div className="flex flex-col sm:flex-row items-center gap-8">
+        <div className="flex flex-col sm:flex-row items-center gap-6">
           {/* Texto */}
           <div className="sm:w-1/2 text-lg leading-relaxed">
             <p>Olá, eu sou a{' '}
               <span className="font-[HappyBirthday4] text-4xl text-pink-600 transition-transform duration-300 hover:scale-105">Grace</span>.
             </p>
-            <p className="mt-4">
+            <p className="mt-5">
               Há 10 anos, transformei minha paixão pela fotografia em meu trabalho.
               Desde muito jovem, fui encantada por essa arte de capturar momentos e, com o tempo, descobri que ela podia mudar vidas.
             </p>
@@ -33,14 +33,10 @@ export function Sobre() {
             />
           </div>
         </div>
-
-        <h1 className="text-5xl font-extrabold text-gray-900 text-center mb-6">_________________________________________</h1>
-
       </div>
 
-
       {/* Segunda Seção */}
-      <div className="relative z-10 w-full -mt-20 max-w-[800px] mx-auto px-6 py-12">
+      <div className="relative z-10 w-full -mt-20 max-w-[800px] mx-auto px-6 py-12 bg-white rounded-lg shadow-lg">
         <div className="flex flex-col sm:flex-row-reverse items-center gap-8">
           {/* Texto */}
           <div className="sm:w-1/2 text-lg leading-relaxed">
@@ -52,10 +48,7 @@ export function Sobre() {
               Sou filha de mineiros, o que me ensinou a valorizar minhas raízes e a importância da família.
               Amo cachorros, doces, crianças e tudo que celebra a vida ao ar livre — seja a beleza da natureza ou um pôr do sol inspirador.
             </p>
-
-            
           </div>
-          
           {/* Imagem */}
           <div className="sm:w-1/2">
             <img 
@@ -65,12 +58,10 @@ export function Sobre() {
             />
           </div>
         </div>
-        <h1 className="text-5xl font-extrabold text-gray-900 text-center mb-6 ">_________________________________________</h1>
-
       </div>
 
       {/* Terceira Seção */}
-      <div className="relative z-10 w-full -mt-20 max-w-[800px] mx-auto px-6 py-12 text-center">
+      <div className="relative z-10 w-full -mt-20 max-w-[800px] mx-auto px-6 py-12 text-center bg-white rounded-lg shadow-lg">
         <p className="text-lg leading-relaxed">
           Além de um olhar apurado para os detalhes, sou comprometida com prazos e a excelência nas entregas.
           Para mim, a fotografia vai além do simples clique: ela transforma momentos em memórias eternas.
@@ -88,7 +79,6 @@ export function Sobre() {
           />
         </div>
       </div>
-
     </div>
   );
 }

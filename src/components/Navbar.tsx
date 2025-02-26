@@ -10,8 +10,14 @@ export function Navbar() {
       <div className="flex flex-col items-center space-y-6">
         {/* Logo */}
         <Link to="/" className="flex flex-col items-center space-y-2">
-          <Camera className="h-8 w-8 text-gray-900" />
-          <span className="text-xs font-light tracking-wider text-center sm:text-sm">GraceFotografia</span>
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center">
+          {/* Logo */}
+          <img
+            src="/logo/LG_PRETO.png"
+            alt="Grace Fotografia Logo"
+            className="h-auto w-auto" // Ajusta o tamanho da logo (altura de 48px)
+          />
+        </div>
         </Link>
 
         {/* Links Principais */}

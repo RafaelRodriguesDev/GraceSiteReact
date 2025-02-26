@@ -1,46 +1,41 @@
-// InstagramMosaic.jsx
 import React, { useState, useEffect } from 'react';
 
 const imagePaths = [
-  "/images/image1.jpg",
-  "/images/image2.jpg",
-  "/images/image3.jpg",
-  "/images/image4.jpg",
-  "/images/image5.jpg",
-  "/images/image6.jpg",
-  "/images/image7.jpg",
-  "/images/image8.jpg",
-  "/images/image9.jpg",
-  "/images/image10.jpg"
+  "/images/image1.jpg", "/images/image2.jpg", "/images/image3.jpg",
+  "/images/image4.jpg", "/images/image5.jpg", "/images/image6.jpg",
+  "/images/image7.jpg", "/images/image8.jpg", "/images/image9.jpg",
+  "/images/image10.jpg", "/images/image11.jpg", "/images/image12.jpg",
+  "/images/image13.jpg", "/images/image14.jpg", "/images/image15.jpg",
+  "/images/image16.jpg", "/images/image17.jpg", "/images/image18.jpg",
+  "/images/image19.jpg", "/images/image20.jpg", "/images/image21.jpg",
+  "/images/image22.jpg", "/images/image23.jpg", "/images/image24.jpg",
+  "/images/image25.jpg"
 ];
 
 export function InstagramMosaic() {
-  const [currentIndex, setCurrentIndex] = useState(0); // Controla a rotação das imagens
-  const [hoveredImage, setHoveredImage] = useState<string | null>(null); // Armazena a imagem em destaque no hover
-  const [selectedImage, setSelectedImage] = useState<string | null>(null); // Armazena a imagem selecionada para visualização ampliada
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Atualiza o índice a cada 3 segundos para "rotacionar" a ordem das imagens
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex(prev => (prev + 1) % imagePaths.length);
-    }, 3000); // Intervalo de 3 segundos
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
-  // Cria um array rotacionado para variar a ordem das imagens
-  const rotatedImages = [
-    ...imagePaths.slice(currentIndex),
-    ...imagePaths.slice(0, currentIndex)
-  ];
+  const visibleImages = imagePaths
+    .slice(currentIndex)
+    .concat(imagePaths.slice(0, currentIndex))
+    .slice(0, 10);
 
   return (
-    <div>
-      {/* Modal para visualização ampliada */}
+    <div className="relative min-h-screen w-full flex flex-col items-center bg-gray-100">
+      {/* Modal de visualização ampliada */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 transition-opacity duration-700 ease-in-out"
-          style={{ opacity: selectedImage ? 1 : 0 }}
-          onClick={() => setSelectedImage(null)} // Fecha o modal ao clicar fora
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={() => setSelectedImage(null)}
         >
           <img
             src={selectedImage}
@@ -50,33 +45,37 @@ export function InstagramMosaic() {
         </div>
       )}
 
-      {/* Grid de imagens */}
+      {/* Grid responsivo */}
       <div
-        className="absolute inset-0 overflow-hidden transition-transform duration-700  ease-[cubic-bezier(0.4, 0, 0.2, 1)]"
+        className="grid-container"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', // Se adapta ao espaço
           gap: '10px',
+          width: '100vw', // Garante que ocupe toda a largura da tela
+          maxWidth: '100%', // Evita que o grid ultrapasse a tela
+          minHeight: '100vh', // Mantém o mínimo da tela para evitar espaços vazios
+          padding: '20px'
         }}
       >
-        {rotatedImages.map((src, idx) => (
+        {visibleImages.map((src, idx) => (
           <div
             key={idx}
-            className="relative transition-all duration-700 ease-[cubic-bezier(0.4, 0, 0.2, 1)]"
-            onMouseEnter={() => setHoveredImage(src)} // Define a imagem em destaque ao passar o mouse
-            onMouseLeave={() => setHoveredImage(null)} // Remove o destaque ao tirar o mouse
-            onClick={() => setSelectedImage(src)} // Abre a imagem em tamanho maior ao clicar
+            className="relative"
+            onMouseEnter={() => setHoveredImage(src)}
+            onMouseLeave={() => setHoveredImage(null)}
+            onClick={() => setSelectedImage(src)}
           >
             <img
               src={src}
               alt={`Mosaico ${idx}`}
               style={{
                 width: '100%',
-                height: '100%',
+                height: '90%',
                 objectFit: 'cover',
                 borderRadius: '8px',
-                transform: hoveredImage === src ? 'scale(1.2)' : 'scale(1)',
-                opacity: hoveredImage === src ? 1 : 0.8,
+                transform: hoveredImage === src ? 'scale(1.1)' : 'scale(1)',
+                opacity: hoveredImage === src ? 1 : 0.9,
                 transition: 'transform 700ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms cubic-bezier(0.4, 0, 0.2, 1)',
                 boxShadow: hoveredImage === src ? '0 8px 16px rgba(0, 0, 0, 0.3)' : 'none',
               }}
