@@ -24,4 +24,3 @@ dist-ssr
 *.sw?
 .env
 supabase/migrations/20250223224021_rapid_cake.sql
-src/pages/PDFCarouselTest.tsx

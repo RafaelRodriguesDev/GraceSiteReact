@@ -40,7 +40,6 @@ function AppContent() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/agendamento" element={<Agenda />} />
           <Route path="/propostas" element={<Propostas />} />
-          <Route path="/PDFCarouselTest" element={<PDFCarouselTest />} />
         </Routes>
       </main>
       <Navbar className={computedClassName} />
