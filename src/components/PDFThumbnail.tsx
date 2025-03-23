@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
 import { thumbnailPlugin } from '@react-pdf-viewer/thumbnail';
 import { RenderPage } from '@react-pdf-viewer/core';
@@ -12,10 +12,24 @@ interface PDFThumbnailProps {
 }
 
 const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ pdfUrl, className = '' }) => {
+  const [workerUrl, setWorkerUrl] = useState('https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js');
+
+  useEffect(() => {
+    const checkWorkerVersion = async () => {
+      try {
+        await fetch('https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js');
+      } catch (error) {
+        setWorkerUrl('https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js');
+      }
+    };
+
+    checkWorkerVersion();
+  }, []);
+
   return (
     <div className={`pdf-thumbnail-container ${className}`}>
       <div style={{ height: '100%' }}>
-        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+        <Worker workerUrl={workerUrl}>
           <div>
             <Viewer
               fileUrl={pdfUrl}
