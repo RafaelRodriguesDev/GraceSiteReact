@@ -1,7 +1,7 @@
 // src/pages/Propostas.tsx
 import React, { useEffect, useState } from 'react';
-import PDFThumbnail from '../components/PDFThumbnail';
 import { InstagramMosaic } from '../pages/InstagramMosaicv';
+import PDFCarousel from '../components/PDFCarousel';
 
 interface Proposta {
   id: string;
@@ -36,39 +36,14 @@ export default function Propostas() {
 
   return (
     <div className="min-h-screen relative p-4">
-      {/* Fundo com InstagramMosaic */}
       <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
         <InstagramMosaic />
       </div>
       
-      <div className="relative z-10 max-w-6xl mx-auto mt-5 px-6 py-12 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
+      <div className="relative z-10 max-w-6xl mx-auto mt-[10vh] px-6 py-12 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
         <h1 className="text-4xl font-light text-center mb-8">Propostas</h1>
         {proposals.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {proposals.map((proposta) => (
-              <div key={proposta.id} className="border rounded-lg p-4 flex flex-col items-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-                {/* PDF Preview */}
-                <div className="w-full h-64 mb-4 overflow-hidden rounded border border-gray-200">
-                  <PDFThumbnail
-                    pdfUrl={proposta.pdfUrl}
-                    scale={1.5}
-                    className="w-full h-full"
-                  />
-                </div>
-                <div className="text-center">
-                  <p className="font-medium text-lg mb-2">{proposta.title}</p>
-                  <a
-                    href={proposta.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300"
-                  >
-                    Abrir PDF
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+          <PDFCarousel pdfs={proposals} />
         ) : (
           <p className="text-center text-gray-600">Nenhuma proposta encontrada.</p>
         )}
