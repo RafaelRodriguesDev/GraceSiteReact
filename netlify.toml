@@ -14,3 +14,9 @@
   
 [context.branch-deploy]
   command = "npm run build"
+
+# Redirecionamentos para SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
