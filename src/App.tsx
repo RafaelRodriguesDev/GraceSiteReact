@@ -6,6 +6,10 @@ import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import { Portfolio } from './pages/Portfolio';
 import { Scheduling } from './pages/Scheduling';
+import { Sobre } from './pages/Sobre';
+import Propostas from './pages/Propostas';
+import PropostasAdmin from './pages/admin/PropostasAdmin';
+import AlbumsAdmin from './pages/AlbumsAdmin';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 
@@ -40,6 +44,22 @@ function App() {
                 </main>
               </>
             } />
+            <Route path="/sobre" element={
+              <>
+                <Navbar />
+                <main className="w-full">
+                  <Sobre />
+                </main>
+              </>
+            } />
+            <Route path="/propostas" element={
+              <>
+                <Navbar />
+                <main className="w-full">
+                  <Propostas />
+                </main>
+              </>
+            } />
             
             {/* Rota de login */}
             <Route path="/login" element={<Login />} />
@@ -48,6 +68,16 @@ function App() {
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/propostas" element={
+              <ProtectedRoute>
+                <PropostasAdmin />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/albums" element={
+              <ProtectedRoute>
+                <AlbumsAdmin />
               </ProtectedRoute>
             } />
           </Routes>

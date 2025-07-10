@@ -1,7 +1,7 @@
 // Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Calendar, Home, Instagram, Facebook, Mail } from 'lucide-react';
+import { Camera, Calendar, Home, User, FileText, Instagram, Facebook, Mail } from 'lucide-react';
 
 export function Navbar() {
   return (
@@ -19,9 +19,17 @@ export function Navbar() {
             <Home className="h-5 w-5 group-hover:scale-110 transition-transform" />
             <span className="text-[10px] sm:text-xs">Início</span>
           </Link>
+          <Link to="/sobre" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
+            <User className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="text-[10px] sm:text-xs">Sobre</span>
+          </Link>
           <Link to="/portfolio" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
             <Camera className="h-5 w-5 group-hover:scale-110 transition-transform" />
             <span className="text-[10px] sm:text-xs">Portfólio</span>
+          </Link>
+          <Link to="/propostas" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
+            <FileText className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="text-[10px] sm:text-xs">Propostas</span>
           </Link>
           <Link to="/agendamento" className="flex flex-col items-center space-y-1 text-gray-600 hover:text-gray-900 group">
             <Calendar className="h-5 w-5 group-hover:scale-110 transition-transform" />
