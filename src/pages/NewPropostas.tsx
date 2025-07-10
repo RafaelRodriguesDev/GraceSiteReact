@@ -196,8 +196,8 @@ const NewPropostas: React.FC = () => {
                   style={{ flex: "0 0 25%" }}
                 >
                   <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500">
-                    {/* Thumbnail */}
-                    <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200">
+                    {/* Thumbnail com overlay */}
+                    <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200 group/card">
                       {proposta.thumbnail_url ? (
                         <img
                           src={proposta.thumbnail_url}
@@ -210,30 +210,27 @@ const NewPropostas: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Overlay com informações */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      {/* Overlay com botão */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-all duration-300 flex items-center justify-center">
+                        <Button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDownload(proposta);
+                          }}
+                          variant="secondary"
+                          leftIcon={<Download className="h-4 w-4" />}
+                          className="transform -translate-y-2 group-hover/card:translate-y-0 transition-transform duration-300"
+                        >
+                          Baixar Proposta
+                        </Button>
+                      </div>
+
+                      {/* Título discreto */}
                       <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-xl font-bold text-white mb-2">
+                        <h3 className="text-lg font-bold text-white drop-shadow-lg">
                           {proposta.titulo}
                         </h3>
                       </div>
-                    </div>
-
-                    {/* Conteúdo */}
-                    <div className="p-6">
-                      {proposta.descricao && (
-                        <p className="text-gray-600 mb-6 leading-relaxed line-clamp-3">
-                          {proposta.descricao}
-                        </p>
-                      )}
-
-                      <Button
-                        onClick={() => handleDownload(proposta)}
-                        className="w-full"
-                        leftIcon={<Download className="h-4 w-4" />}
-                      >
-                        Baixar Proposta
-                      </Button>
                     </div>
                   </div>
                 </div>
