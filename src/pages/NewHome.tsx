@@ -55,9 +55,9 @@ export function NewHome() {
       </div>
 
       {/* Scrollable Content */}
-      <div className="relative z-10 h-full overflow-y-auto lg:overflow-visible">
+      <div className="relative z-10 h-full overflow-y-auto lg:overflow-visible pb-safe">
         {/* Hero Section */}
-        <section className="min-h-screen lg:min-h-screen flex items-center justify-center px-4">
+        <section className="min-h-screen lg:min-h-screen flex items-center justify-center px-4 py-safe">
           <div
             className={`text-center max-w-4xl mx-auto transform transition-all duration-1000 ${
               isVisible
