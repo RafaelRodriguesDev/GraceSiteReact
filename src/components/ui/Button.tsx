@@ -76,23 +76,43 @@ export function Button({
 
   const isDisabled = disabled || loading;
 
+  const content = loading ? (
+    <>
+      <LoadingSpinner
+        size={size === "lg" ? "md" : "sm"}
+        color={variant === "primary" ? "white" : "primary"}
+      />
+      <span>Carregando...</span>
+    </>
+  ) : (
+    <>
+      {leftIcon && <span>{leftIcon}</span>}
+      <span>{children}</span>
+      {rightIcon && <span>{rightIcon}</span>}
+    </>
+  );
+
+  if (as === "a") {
+    return (
+      <a
+        className={classes}
+        href={href}
+        target={target}
+        rel={rel}
+        {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
+        {content}
+      </a>
+    );
+  }
+
   return (
-    <button className={classes} disabled={isDisabled} {...props}>
-      {loading ? (
-        <>
-          <LoadingSpinner
-            size={size === "lg" ? "md" : "sm"}
-            color={variant === "primary" ? "white" : "primary"}
-          />
-          <span>Carregando...</span>
-        </>
-      ) : (
-        <>
-          {leftIcon && <span>{leftIcon}</span>}
-          <span>{children}</span>
-          {rightIcon && <span>{rightIcon}</span>}
-        </>
-      )}
+    <button
+      className={classes}
+      disabled={isDisabled}
+      {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
+      {content}
     </button>
   );
 }
