@@ -16,7 +16,8 @@ import {
   Filter,
   RefreshCw,
   Edit,
-  MessageSquare
+  MessageSquare,
+  Camera
 } from 'lucide-react';
 import { formatPhoneNumber } from '../utils/phoneUtils';
 
@@ -368,6 +369,22 @@ export function Dashboard() {
                 <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
                 Atualizar
               </button>
+              
+              <a
+                href="/admin/propostas"
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+              >
+                <Edit className="h-4 w-4 mr-2" />
+                Gerenciar Propostas
+              </a>
+              
+              <a
+                href="/admin/albums"
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+              >
+                <Camera className="h-4 w-4 mr-2" />
+                Gerenciar Álbuns
+              </a>
               
               <button
                 onClick={signOut}
