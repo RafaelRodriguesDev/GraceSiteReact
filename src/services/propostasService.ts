@@ -206,7 +206,7 @@ export class PropostasService {
   // Deletar arquivo do storage
   static async deleteFile(filePath: string): Promise<void> {
     const { error } = await supabase.storage
-      .from("propostas-pdfs")
+      .from("propostas")
       .remove([filePath]);
 
     if (error) {
