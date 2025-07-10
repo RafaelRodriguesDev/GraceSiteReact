@@ -96,10 +96,7 @@ export function NewScheduling() {
       setEvents(calendarEvents);
     } catch (error) {
       console.error("Erro ao carregar eventos:", error);
-      notifications.error(
-        "Erro ao carregar calendário",
-        "Tente recarregar a página",
-      );
+      alert("Erro ao carregar calendário. Tente recarregar a página.");
     } finally {
       setLoading(false);
     }
