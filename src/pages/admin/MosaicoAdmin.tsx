@@ -348,18 +348,8 @@ const MosaicoAdmin: React.FC = () => {
           </div>
         )}
 
-        <div className="mb-8">
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                Gerenciar Mosaico
-              </h1>
-              <p className="text-gray-600">
-                Adicione, remova e organize as imagens do mosaico de fundo
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3">
+                <div className="mb-8">
+          <div className="flex flex-col sm:flex-row gap-3">
               {/* Botão de migração para imagens estáticas */}
               {images.length > 0 && images[0].id.startsWith("static-") && (
                 <button
