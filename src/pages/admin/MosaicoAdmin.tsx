@@ -141,14 +141,29 @@ const MosaicoAdmin: React.FC = () => {
   const handleDeleteSelected = async () => {
     if (selectedImages.size === 0) return;
 
-    const confirmMessage = `Tem certeza que deseja excluir ${selectedImages.size} imagem(ns) selecionada(s)?`;
+    const selectedArray = Array.from(selectedImages);
+    const staticImages = selectedArray.filter((id) => id.startsWith("static-"));
+    const dbImages = selectedArray.filter((id) => !id.startsWith("static-"));
+
+    if (staticImages.length > 0) {
+      showMessage(
+        "error",
+        `${staticImages.length} imagem(ns) estática(s) não pode(m) ser excluída(s). Configure o banco de dados para gerenciar imagens.`,
+      );
+
+      // Remove as imagens estáticas da seleção
+      setSelectedImages(new Set(dbImages));
+
+      if (dbImages.length === 0) return;
+    }
+
+    const confirmMessage = `Tem certeza que deseja excluir ${dbImages.length} imagem(ns) selecionada(s)?`;
     if (!confirm(confirmMessage)) return;
 
-    const selectedArray = Array.from(selectedImages);
     let successCount = 0;
     let errorCount = 0;
 
-    for (const id of selectedArray) {
+    for (const id of dbImages) {
       try {
         await MosaicoService.deleteImage(id);
         successCount++;
