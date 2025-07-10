@@ -1,8 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, Eye, EyeOff, Upload, FileText, Download } from 'lucide-react';
-import { PropostasService } from '../../services/propostasService';
-import { Proposta, PropostaFormData } from '../../types/propostas';
-import PropostaForm from '../../components/propostas/PropostaForm';
+import React, { useState, useEffect } from "react";
+import {
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  EyeOff,
+  Upload,
+  FileText,
+  Download,
+} from "lucide-react";
+import { PropostasService } from "../../services/propostasService";
+import { Proposta, PropostaFormData } from "../../types/propostas";
+import PropostaForm from "../../components/propostas/PropostaForm";
 
 const PropostasAdmin: React.FC = () => {
   const [propostas, setPropostas] = useState<Proposta[]>([]);
@@ -11,6 +20,8 @@ const PropostasAdmin: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingProposta, setEditingProposta] = useState<Proposta | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     loadPropostas();
@@ -22,8 +33,8 @@ const PropostasAdmin: React.FC = () => {
       const data = await PropostasService.getAllPropostas();
       setPropostas(data);
     } catch (err) {
-      setError('Erro ao carregar propostas');
-      console.error('Erro ao carregar propostas:', err);
+      setError("Erro ao carregar propostas");
+      console.error("Erro ao carregar propostas:", err);
     } finally {
       setLoading(false);
     }
@@ -44,7 +55,7 @@ const PropostasAdmin: React.FC = () => {
       if (editingProposta) {
         // Atualizar proposta existente
         let arquivo_url = editingProposta.arquivo_url;
-        
+
         if (formData.arquivo) {
           arquivo_url = await PropostasService.uploadPDF(formData.arquivo);
         }
@@ -54,22 +65,22 @@ const PropostasAdmin: React.FC = () => {
           descricao: formData.descricao,
           arquivo_url,
           ativo: formData.ativo,
-          ordem: formData.ordem
+          ordem: formData.ordem,
         });
       } else {
         // Criar nova proposta
         if (!formData.arquivo) {
-          throw new Error('Arquivo é obrigatório para nova proposta');
+          throw new Error("Arquivo é obrigatório para nova proposta");
         }
 
         const arquivo_url = await PropostasService.uploadPDF(formData.arquivo);
-        
+
         await PropostasService.createProposta({
           titulo: formData.titulo,
           descricao: formData.descricao,
           arquivo_url,
           ativo: formData.ativo,
-          ordem: formData.ordem
+          ordem: formData.ordem,
         });
       }
 
@@ -77,13 +88,13 @@ const PropostasAdmin: React.FC = () => {
       setEditingProposta(null);
       await loadPropostas();
     } catch (err) {
-      console.error('Erro ao salvar proposta:', err);
-      alert('Erro ao salvar proposta');
+      console.error("Erro ao salvar proposta:", err);
+      alert("Erro ao salvar proposta");
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Tem certeza que deseja excluir esta proposta?')) {
+    if (!confirm("Tem certeza que deseja excluir esta proposta?")) {
       return;
     }
 
@@ -92,8 +103,8 @@ const PropostasAdmin: React.FC = () => {
       await PropostasService.deleteProposta(id);
       await loadPropostas();
     } catch (err) {
-      console.error('Erro ao deletar proposta:', err);
-      alert('Erro ao deletar proposta');
+      console.error("Erro ao deletar proposta:", err);
+      alert("Erro ao deletar proposta");
     } finally {
       setDeletingId(null);
     }
@@ -104,16 +115,16 @@ const PropostasAdmin: React.FC = () => {
       await PropostasService.toggleAtivo(proposta.id);
       await loadPropostas();
     } catch (err) {
-      console.error('Erro ao alterar status:', err);
-      alert('Erro ao alterar status da proposta');
+      console.error("Erro ao alterar status:", err);
+      alert("Erro ao alterar status da proposta");
     }
   };
 
   const handleDownload = (proposta: Proposta) => {
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = proposta.arquivo_url;
     link.download = `${proposta.titulo}.pdf`;
-    link.target = '_blank';
+    link.target = "_blank";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -132,8 +143,12 @@ const PropostasAdmin: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Gerenciar Propostas</h1>
-          <p className="text-gray-600">Gerencie as propostas que aparecem na página pública</p>
+          <h1 className="text-2xl font-bold text-gray-900">
+            Gerenciar Propostas
+          </h1>
+          <p className="text-gray-600">
+            Gerencie as propostas que aparecem na página pública
+          </p>
         </div>
         <button
           onClick={handleCreate}
@@ -166,26 +181,33 @@ const PropostasAdmin: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {propostas.map((proposta) => (
-            <div key={proposta.id} className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+            <div
+              key={proposta.id}
+              className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden"
+            >
               {/* Status Badge */}
               <div className="p-4 pb-0">
                 <div className="flex justify-between items-start mb-3">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    proposta.ativo 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-gray-100 text-gray-800'
-                  }`}>
-                    {proposta.ativo ? 'Ativo' : 'Inativo'}
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      proposta.ativo
+                        ? "bg-green-100 text-green-800"
+                        : "bg-gray-100 text-gray-800"
+                    }`}
+                  >
+                    {proposta.ativo ? "Ativo" : "Inativo"}
                   </span>
-                  <span className="text-xs text-gray-500">Ordem: {proposta.ordem}</span>
+                  <span className="text-xs text-gray-500">
+                    Ordem: {proposta.ordem}
+                  </span>
                 </div>
               </div>
 
               {/* Thumbnail */}
               <div className="h-32 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mx-4 rounded-lg">
                 {proposta.thumbnail_url ? (
-                  <img 
-                    src={proposta.thumbnail_url} 
+                  <img
+                    src={proposta.thumbnail_url}
                     alt={proposta.titulo}
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -196,15 +218,18 @@ const PropostasAdmin: React.FC = () => {
 
               {/* Content */}
               <div className="p-4">
-                <h3 className="font-semibold text-gray-900 mb-2">{proposta.titulo}</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  {proposta.titulo}
+                </h3>
                 {proposta.descricao && (
                   <p className="text-sm text-gray-600 mb-3 line-clamp-2">
                     {proposta.descricao}
                   </p>
                 )}
-                
+
                 <div className="text-xs text-gray-500 mb-4">
-                  Criado em: {new Date(proposta.created_at).toLocaleDateString('pt-BR')}
+                  Criado em:{" "}
+                  {new Date(proposta.created_at).toLocaleDateString("pt-BR")}
                 </div>
 
                 {/* Actions */}
@@ -216,19 +241,23 @@ const PropostasAdmin: React.FC = () => {
                     <Download className="h-3 w-3" />
                     Download
                   </button>
-                  
+
                   <button
                     onClick={() => handleToggleAtivo(proposta)}
                     className={`p-2 rounded transition-colors duration-200 ${
-                      proposta.ativo 
-                        ? 'bg-gray-100 text-gray-600 hover:bg-gray-200' 
-                        : 'bg-green-100 text-green-600 hover:bg-green-200'
+                      proposta.ativo
+                        ? "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        : "bg-green-100 text-green-600 hover:bg-green-200"
                     }`}
-                    title={proposta.ativo ? 'Desativar' : 'Ativar'}
+                    title={proposta.ativo ? "Desativar" : "Ativar"}
                   >
-                    {proposta.ativo ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {proposta.ativo ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
                   </button>
-                  
+
                   <button
                     onClick={() => handleEdit(proposta)}
                     className="p-2 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 transition-colors duration-200"
@@ -236,7 +265,7 @@ const PropostasAdmin: React.FC = () => {
                   >
                     <Edit className="h-4 w-4" />
                   </button>
-                  
+
                   <button
                     onClick={() => handleDelete(proposta.id)}
                     disabled={deletingId === proposta.id}
