@@ -414,12 +414,26 @@ export function NewPortfolio() {
 
             {/* Imagem */}
             <div className="relative flex items-center justify-center h-full">
-              <img
-                src={selectedFoto.url}
-                alt={selectedFoto.titulo || "Foto"}
-                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              />
+              <div className="relative">
+                <img
+                  src={selectedFoto.url}
+                  alt={selectedFoto.titulo || "Foto"}
+                  className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                />
+                {/* Marca d'água grande centralizada */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <img
+                    src="/logo/LG_BRANCO.png"
+                    alt=""
+                    className="w-1/2 h-1/2 object-contain opacity-20"
+                    style={{
+                      filter: "drop-shadow(2px 2px 4px rgba(0,0,0,0.3))",
+                      mixBlendMode: "normal",
+                    }}
+                  />
+                </div>
+              </div>
 
               {/* Informações da foto */}
               {(selectedFoto.titulo || selectedFoto.descricao) && (
