@@ -8,7 +8,7 @@ import { NewHome as Home } from "./pages/NewHome";
 import { NewPortfolio as Portfolio } from "./pages/NewPortfolio";
 import { Scheduling } from "./pages/Scheduling";
 import { NewSobre as Sobre } from "./pages/NewSobre";
-import Propostas from "./pages/Propostas";
+import NewPropostas from "./pages/NewPropostas";
 import PropostasAdmin from "./pages/admin/PropostasAdmin";
 import AlbumsAdmin from "./pages/AlbumsAdmin";
 import { Login } from "./pages/Login";
