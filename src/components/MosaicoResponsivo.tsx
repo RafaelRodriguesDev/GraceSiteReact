@@ -35,6 +35,7 @@ export function MosaicoResponsivo({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [gridSize, setGridSize] = useState(60);
 
   // Carregar imagens do banco ou usar fallback
   useEffect(() => {
