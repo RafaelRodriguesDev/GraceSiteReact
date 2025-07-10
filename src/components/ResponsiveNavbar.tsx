@@ -101,6 +101,11 @@ export function ResponsiveNavbar() {
     }
   };
 
+  // Não renderizar navbar nas páginas logadas
+  if (isLoggedPage) {
+    return null;
+  }
+
   return (
     <>
       {/* Desktop Navbar - lateral esquerda */}
