@@ -157,17 +157,31 @@ const PropostasAdmin: React.FC = () => {
     try {
       setIsDeleting(true);
 
-      // Deletar todas as propostas selecionadas
-      const deletePromises = Array.from(selectedItems).map((id) =>
-        PropostasService.deleteProposta(id),
-      );
+      const selectedArray = Array.from(selectedItems);
+      let successCount = 0;
+      let errors: string[] = [];
 
-      await Promise.all(deletePromises);
+      // Deletar uma por vez para melhor controle de erros
+      for (const id of selectedArray) {
+        try {
+          await PropostasService.deleteProposta(id);
+          successCount++;
+        } catch (err) {
+          console.error(`Erro ao deletar proposta ${id}:`, err);
+          errors.push(id);
+        }
+      }
 
       setSelectedItems(new Set());
       await loadPropostas();
 
-      alert(`${selectedItems.size} proposta(s) excluída(s) com sucesso!`);
+      if (errors.length === 0) {
+        alert(`${successCount} proposta(s) excluída(s) com sucesso!`);
+      } else {
+        alert(
+          `${successCount} proposta(s) excluída(s) com sucesso. ${errors.length} proposta(s) falharam na exclusão.`,
+        );
+      }
     } catch (err) {
       console.error("Erro ao deletar propostas:", err);
       alert("Erro ao deletar algumas propostas. Tente novamente.");
