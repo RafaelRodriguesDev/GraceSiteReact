@@ -105,6 +105,7 @@ export function NewScheduling() {
   const blockedDates = ["2024-03-29", "2024-03-31", "2024-04-21", "2024-05-01"];
 
   const handleDateSelect = (slotInfo: { start: Date; end: Date }) => {
+    console.log("handleDateSelect chamado com:", slotInfo);
     const selectedDate = slotInfo.start;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
