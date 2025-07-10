@@ -5,7 +5,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ResponsiveNavbar } from "./components/ResponsiveNavbar";
 import { SwipeNavigationWrapper } from "./components/SwipeNavigationWrapper";
 import { NewHome as Home } from "./pages/NewHome";
-import { Portfolio } from "./pages/Portfolio";
+import { NewPortfolio as Portfolio } from "./pages/NewPortfolio";
 import { Scheduling } from "./pages/Scheduling";
 import { NewSobre as Sobre } from "./pages/NewSobre";
 import Propostas from "./pages/Propostas";
