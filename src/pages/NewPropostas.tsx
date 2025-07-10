@@ -153,7 +153,7 @@ const NewPropostas: React.FC = () => {
   const currentProposta = propostas[currentIndex];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white hide-scrollbar">
       {/* Hero Section */}
       <section className="relative py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
