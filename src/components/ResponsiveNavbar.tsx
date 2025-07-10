@@ -62,6 +62,7 @@ export function ResponsiveNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [showDesktopSidebar, setShowDesktopSidebar] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
