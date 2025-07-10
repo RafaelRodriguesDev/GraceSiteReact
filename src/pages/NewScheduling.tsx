@@ -166,6 +166,7 @@ export function NewScheduling() {
     }
 
     setAvailableTimesForDate(allTimes);
+    console.log("Mudando step para time");
     setStep("time");
   };
 
