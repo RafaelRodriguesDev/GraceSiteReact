@@ -11,16 +11,30 @@ export interface MosaicoImage {
 export class MosaicoService {
   // Buscar todas as imagens do mosaico
   static async getAllImages(): Promise<MosaicoImage[]> {
-    const { data, error } = await supabase
-      .from("mosaico_images")
-      .select("*")
-      .order("ordem", { ascending: true });
+    try {
+      const { data, error } = await supabase
+        .from("mosaico_images")
+        .select("*")
+        .order("ordem", { ascending: true });
 
-    if (error) {
-      throw new Error(`Erro ao buscar imagens do mosaico: ${error.message}`);
+      if (error) {
+        // Se a tabela não existe ou há erro de conexão, retornar array vazio
+        // para permitir que o componente use imagens estáticas como fallback
+        console.warn(
+          "Erro ao buscar imagens do mosaico (usando fallback):",
+          error.message,
+        );
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
+      console.warn(
+        "Erro de conexão ao buscar imagens do mosaico (usando fallback):",
+        error,
+      );
+      return [];
     }
-
-    return data || [];
   }
 
   // Upload de imagem para o mosaico
