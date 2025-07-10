@@ -187,7 +187,18 @@ export function NewPortfolio() {
                               alt={album.titulo}
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             />
-                            <LogoWatermark position="bottom-right" size="sm" />
+                            {/* Marca d'água grande cobrindo o card */}
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                              <img
+                                src="/logo/LG_PRETO.png"
+                                alt=""
+                                className="w-3/4 h-3/4 object-contain opacity-10 grayscale"
+                                style={{
+                                  filter: "grayscale(100%)",
+                                  mixBlendMode: "multiply",
+                                }}
+                              />
+                            </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                           </div>
                         ) : (
