@@ -25,41 +25,51 @@ function App() {
             <Route
               path="/"
               element={
-                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                  <Home />
-                </main>
+                <SwipeNavigationWrapper>
+                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <Home />
+                  </main>
+                </SwipeNavigationWrapper>
               }
             />
             <Route
               path="/portfolio"
               element={
-                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                  <Portfolio />
-                </main>
+                <SwipeNavigationWrapper>
+                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <Portfolio />
+                  </main>
+                </SwipeNavigationWrapper>
               }
             />
             <Route
               path="/agendamento"
               element={
-                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                  <Scheduling />
-                </main>
+                <SwipeNavigationWrapper>
+                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <Scheduling />
+                  </main>
+                </SwipeNavigationWrapper>
               }
             />
             <Route
               path="/sobre"
               element={
-                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                  <Sobre />
-                </main>
+                <SwipeNavigationWrapper>
+                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <Sobre />
+                  </main>
+                </SwipeNavigationWrapper>
               }
             />
             <Route
               path="/propostas"
               element={
-                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                  <Propostas />
-                </main>
+                <SwipeNavigationWrapper>
+                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <Propostas />
+                  </main>
+                </SwipeNavigationWrapper>
               }
             />
 
