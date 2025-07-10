@@ -50,7 +50,13 @@ export function NewHome() {
     <div className="h-screen lg:min-h-screen relative overflow-hidden">
       {/* Background Mosaic */}
       <div className="absolute inset-0 z-0">
-        <InstagramMosaic />
+        <MosaicoResponsivo
+          className="absolute inset-0"
+          enableHover={false}
+          enableModal={false}
+          autoRotate={true}
+          rotateInterval={4000}
+        />
         <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px]"></div>
       </div>
 
