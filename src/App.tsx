@@ -10,6 +10,7 @@ import { NewScheduling as Scheduling } from "./pages/NewScheduling";
 import { NewSobre as Sobre } from "./pages/NewSobre";
 import NewPropostas from "./pages/NewPropostas";
 import PropostasAdmin from "./pages/admin/PropostasAdmin";
+import MosaicoAdmin from "./pages/admin/MosaicoAdmin";
 import AlbumsAdmin from "./pages/AlbumsAdmin";
 import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
