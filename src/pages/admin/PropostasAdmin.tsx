@@ -157,7 +157,7 @@ const PropostasAdmin: React.FC = () => {
     try {
       setIsDeleting(true);
 
-      const selectedArray = Array.from(selectedItems);
+            const selectedArray = Array.from(selectedItems);
       let successCount = 0;
       let errors: string[] = [];
 
@@ -178,9 +178,7 @@ const PropostasAdmin: React.FC = () => {
       if (errors.length === 0) {
         alert(`${successCount} proposta(s) excluída(s) com sucesso!`);
       } else {
-        alert(
-          `${successCount} proposta(s) excluída(s) com sucesso. ${errors.length} proposta(s) falharam na exclusão.`,
-        );
+        alert(`${successCount} proposta(s) excluída(s) com sucesso. ${errors.length} proposta(s) falharam na exclusão.`);
       }
     } catch (err) {
       console.error("Erro ao deletar propostas:", err);
@@ -198,9 +196,11 @@ const PropostasAdmin: React.FC = () => {
     );
   }
 
-  return (
-    <div className="space-y-6">
-      {/* Header */}
+    return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 py-6 lg:px-8">
+        <div className="space-y-6">
+          {/* Header */}
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
