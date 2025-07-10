@@ -109,8 +109,21 @@ export function ResponsiveNavbar() {
 
   return (
     <>
+      {/* Hover Area - triggers sidebar */}
+      <div
+        className="hidden lg:block fixed left-0 top-0 w-16 h-full z-40"
+        onMouseEnter={() => setShowDesktopSidebar(true)}
+      />
+
       {/* Desktop Navbar - lateral esquerda */}
-      <nav className="hidden lg:block fixed left-[5%] top-1/2 -translate-y-1/2 w-[9%] bg-white/80 backdrop-blur-sm z-50 rounded-2xl shadow-lg border border-gray-100 py-8 overflow-y-auto max-h-[90vh]">
+      <nav
+        className={`hidden lg:block fixed left-0 top-1/2 -translate-y-1/2 w-[280px] bg-white/95 backdrop-blur-sm z-50 rounded-r-2xl shadow-xl border border-gray-100 py-8 overflow-y-auto max-h-[90vh] transition-transform duration-300 ease-out ${
+          showDesktopSidebar
+            ? "translate-x-0"
+            : "-translate-x-[calc(100%-2rem)]"
+        }`}
+        onMouseLeave={() => setShowDesktopSidebar(false)}
+      >
         <div className="flex flex-col items-center space-y-6">
           {/* Logo */}
           <Logo as="link" size="md" className="mb-2" />
