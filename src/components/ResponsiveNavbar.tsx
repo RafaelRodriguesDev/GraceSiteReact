@@ -124,46 +124,50 @@ export function ResponsiveNavbar() {
         }`}
         onMouseLeave={() => setShowDesktopSidebar(false)}
       >
-        <div className="flex flex-col items-center space-y-6">
+        <div className="px-6">
           {/* Logo */}
-          <Logo as="link" size="md" className="mb-2" />
+          <div className="mb-8">
+            <Logo as="link" size="lg" className="mx-auto" />
+          </div>
 
           {/* Links Principais */}
-          <div className="flex flex-col items-center space-y-4">
+          <div className="space-y-2 mb-8">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className={`flex flex-col items-center space-y-1 group transition-colors ${
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                   location.pathname === item.to
-                    ? "text-gray-900"
-                    : "text-gray-600 hover:text-gray-900"
+                    ? "bg-gray-900 text-white shadow-md"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
-                <div className="group-hover:scale-110 transition-transform">
-                  {item.icon}
-                </div>
-                <span className="text-[10px] sm:text-xs">{item.label}</span>
+                <div className="flex-shrink-0">{item.icon}</div>
+                <span className="font-medium">{item.label}</span>
               </Link>
             ))}
           </div>
 
           {/* Redes Sociais */}
-          <div className="flex flex-col items-center space-y-4 pt-4 border-t border-gray-200 w-full">
-            {socialLinks.map((social) => (
-              <a
-                key={social.href}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 group"
-                aria-label={social.label}
-              >
-                <div className="group-hover:scale-110 transition-transform">
-                  {social.icon}
-                </div>
-              </a>
-            ))}
+          <div className="pt-4 border-t border-gray-200">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">
+              Redes Sociais
+            </p>
+            <div className="space-y-2">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.href}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
+                  aria-label={social.label}
+                >
+                  <div className="flex-shrink-0">{social.icon}</div>
+                  <span className="text-sm">{social.label}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </nav>
