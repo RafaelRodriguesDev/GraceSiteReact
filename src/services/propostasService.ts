@@ -214,6 +214,27 @@ export class PropostasService {
     }
   }
 
+  // Deletar múltiplas propostas (bulk delete)
+  static async deleteMultiplePropostas(
+    ids: string[],
+  ): Promise<{ success: number; errors: string[] }> {
+    let successCount = 0;
+    const errors: string[] = [];
+
+    // Deletar uma por vez para melhor controle de erros e limpeza de arquivos
+    for (const id of ids) {
+      try {
+        await this.deleteProposta(id);
+        successCount++;
+      } catch (error) {
+        console.error(`Erro ao deletar proposta ${id}:`, error);
+        errors.push(id);
+      }
+    }
+
+    return { success: successCount, errors };
+  }
+
   // Reordenar propostas
   static async reorderPropostas(
     propostas: { id: string; ordem: number }[],
