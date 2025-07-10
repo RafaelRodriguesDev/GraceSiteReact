@@ -130,6 +130,52 @@ const PropostasAdmin: React.FC = () => {
     document.body.removeChild(link);
   };
 
+  const handleSelectAll = () => {
+    if (selectedItems.size === propostas.length) {
+      setSelectedItems(new Set());
+    } else {
+      setSelectedItems(new Set(propostas.map((p) => p.id)));
+    }
+  };
+
+  const handleSelectItem = (id: string) => {
+    const newSelected = new Set(selectedItems);
+    if (newSelected.has(id)) {
+      newSelected.delete(id);
+    } else {
+      newSelected.add(id);
+    }
+    setSelectedItems(newSelected);
+  };
+
+  const handleDeleteSelected = async () => {
+    if (selectedItems.size === 0) return;
+
+    const confirmMessage = `Tem certeza que deseja excluir ${selectedItems.size} proposta(s) selecionada(s)?`;
+    if (!confirm(confirmMessage)) return;
+
+    try {
+      setIsDeleting(true);
+
+      // Deletar todas as propostas selecionadas
+      const deletePromises = Array.from(selectedItems).map((id) =>
+        PropostasService.deleteProposta(id),
+      );
+
+      await Promise.all(deletePromises);
+
+      setSelectedItems(new Set());
+      await loadPropostas();
+
+      alert(`${selectedItems.size} proposta(s) excluída(s) com sucesso!`);
+    } catch (err) {
+      console.error("Erro ao deletar propostas:", err);
+      alert("Erro ao deletar algumas propostas. Tente novamente.");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-64">
