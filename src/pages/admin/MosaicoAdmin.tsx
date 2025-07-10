@@ -457,15 +457,25 @@ const MosaicoAdmin: React.FC = () => {
               >
                 {/* Checkbox */}
                 <div className="p-3 pb-0">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={selectedImages.has(image.id)}
-                      onChange={() => handleSelectImage(image.id)}
-                      className="h-4 w-4 text-gray-900 focus:ring-gray-500 border-gray-300 rounded"
-                    />
-                    <span className="text-xs text-gray-500">#{index + 1}</span>
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={selectedImages.has(image.id)}
+                        onChange={() => handleSelectImage(image.id)}
+                        className="h-4 w-4 text-gray-900 focus:ring-gray-500 border-gray-300 rounded"
+                        disabled={image.id.startsWith("static-")}
+                      />
+                      <span className="text-xs text-gray-500">
+                        #{index + 1}
+                      </span>
+                    </label>
+                    {image.id.startsWith("static-") && (
+                      <span className="text-xs text-blue-600 font-medium bg-blue-100 px-2 py-1 rounded">
+                        Estática
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Image */}
