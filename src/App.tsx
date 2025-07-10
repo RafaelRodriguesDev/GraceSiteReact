@@ -101,6 +101,16 @@ function App() {
                 }
               />
               <Route
+                path="/admin/mosaico"
+                element={
+                  <ProtectedRoute>
+                    <main className="w-full min-h-screen">
+                      <MosaicoAdmin />
+                    </main>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
                 path="/admin/albums"
                 element={
                   <ProtectedRoute>
