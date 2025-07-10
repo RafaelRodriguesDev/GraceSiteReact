@@ -449,7 +449,7 @@ export function Dashboard() {
                 className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
               >
                 <Camera className="h-4 w-4 mr-2" />
-                Gerenciar Álbuns
+                <span className="hidden sm:inline">Álbuns</span>
               </a>
 
               <button
