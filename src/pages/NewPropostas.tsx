@@ -283,20 +283,33 @@ const NewPropostas: React.FC = () => {
         </div>
       </section>
 
-      {/* Seção simples apenas com WhatsApp */}
+      {/* Seção com WhatsApp e Agendamento */}
       <section className="py-12 px-4 bg-white">
         <div className="max-w-2xl mx-auto text-center">
-          <Button
-            as="a"
-            href="https://wa.me/5511999999999"
-            target="_blank"
-            rel="noopener noreferrer"
-            size="lg"
-            leftIcon={<Phone className="h-5 w-5" />}
-            className="bg-green-600 hover:bg-green-700 text-white"
-          >
-            Falar no WhatsApp
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              as="a"
+              href="https://wa.me/5511999999999"
+              target="_blank"
+              rel="noopener noreferrer"
+              size="lg"
+              leftIcon={<Phone className="h-5 w-5" />}
+              className="bg-green-600 hover:bg-green-700 text-white"
+            >
+              Falar no WhatsApp
+            </Button>
+
+            <Link to="/agendamento">
+              <Button
+                size="lg"
+                leftIcon={<Calendar className="h-5 w-5" />}
+                rightIcon={<ArrowRight className="h-5 w-5" />}
+                className="bg-gray-900 hover:bg-gray-800 text-white"
+              >
+                Agendar Consulta
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
