@@ -351,19 +351,7 @@ const NewPropostas: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              as="a"
-              href="https://wa.me/5511999999999"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="secondary"
-              size="lg"
-              leftIcon={<Phone className="h-5 w-5" />}
-            >
-              Chamar no WhatsApp
-            </Button>
-
+          <div className="flex justify-center">
             <Link to="/agendamento">
               <Button
                 variant="outline"
