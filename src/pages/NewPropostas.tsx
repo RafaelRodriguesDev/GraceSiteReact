@@ -220,8 +220,13 @@ const NewPropostas: React.FC = () => {
               {propostas.map((proposta, index) => (
                 <div
                   key={proposta.id}
-                  className={`w-full max-w-sm mx-auto transition-all duration-700 ease-out ${getCarouselItemClass(index)}`}
-                  style={{ flex: "0 0 33.33%" }}
+                  className={`w-full max-w-sm transition-all duration-700 ease-out ${getCarouselItemClass(index)} ${
+                    propostas.length <= 7 ? "flex-shrink-0" : "mx-auto"
+                  }`}
+                  style={{
+                    flex: propostas.length <= 7 ? "0 0 auto" : "0 0 33.33%",
+                    width: propostas.length <= 7 ? "320px" : "auto",
+                  }}
                 >
                   <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500">
                     {/* Thumbnail com overlay */}
