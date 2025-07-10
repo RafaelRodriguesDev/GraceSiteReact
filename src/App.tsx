@@ -18,61 +18,47 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="min-h-screen bg-white">
+          <ResponsiveNavbar />
           <Routes>
             {/* Rotas públicas */}
             <Route
               path="/"
               element={
-                <>
-                  <Navbar />
-                  <main className="w-full">
-                    <Home />
-                  </main>
-                </>
+                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                  <Home />
+                </main>
               }
             />
             <Route
               path="/portfolio"
               element={
-                <>
-                  <Navbar />
-                  <main className="w-full">
-                    <Portfolio />
-                  </main>
-                </>
+                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                  <Portfolio />
+                </main>
               }
             />
             <Route
               path="/agendamento"
               element={
-                <>
-                  <Navbar />
-                  <main className="w-full">
-                    <Scheduling />
-                  </main>
-                </>
+                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                  <Scheduling />
+                </main>
               }
             />
             <Route
               path="/sobre"
               element={
-                <>
-                  <Navbar />
-                  <main className="w-full">
-                    <Sobre />
-                  </main>
-                </>
+                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                  <Sobre />
+                </main>
               }
             />
             <Route
               path="/propostas"
               element={
-                <>
-                  <Navbar />
-                  <main className="w-full">
-                    <Propostas />
-                  </main>
-                </>
+                <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                  <Propostas />
+                </main>
               }
             />
 
