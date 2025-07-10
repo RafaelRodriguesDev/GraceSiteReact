@@ -110,27 +110,18 @@ export function NewScheduling() {
     today.setHours(0, 0, 0, 0);
 
     if (selectedDate < today) {
-      notifications.warning(
-        "Data inválida",
-        "Não é possível agendar em datas passadas",
-      );
+      alert("Não é possível agendar em datas passadas.");
       return;
     }
 
     const dateStr = selectedDate.toISOString().split("T")[0];
     if (blockedDates.includes(dateStr)) {
-      notifications.warning(
-        "Data indisponível",
-        "Esta data não está disponível para agendamento",
-      );
+      alert("Esta data não está disponível para agendamento.");
       return;
     }
 
     if (selectedDate.getDay() === 0) {
-      notifications.info(
-        "Domingos não disponíveis",
-        "Não realizamos agendamentos aos domingos",
-      );
+      alert("Não realizamos agendamentos aos domingos.");
       return;
     }
 
@@ -178,7 +169,7 @@ export function NewScheduling() {
 
   const handleTimeSelect = (event: CalendarEvent) => {
     if (!event.available_date_id) {
-      notifications.error("Erro", "Horário selecionado inválido");
+      alert("Horário selecionado inválido.");
       return;
     }
 
@@ -264,10 +255,7 @@ export function NewScheduling() {
       window.open(whatsappLink, "_blank");
 
       setSubmitStatus("success");
-      notifications.success(
-        "Agendamento enviado!",
-        "Entraremos em contato em breve",
-      );
+      alert("Agendamento enviado! Entraremos em contato em breve.");
 
       // Reset form
       setSelectedSlot(null);
@@ -276,9 +264,8 @@ export function NewScheduling() {
       loadEvents();
     } catch (error) {
       console.error("Erro ao enviar agendamento:", error);
-      notifications.error(
-        "Erro ao agendar",
-        "Tente novamente ou entre em contato via WhatsApp",
+      alert(
+        "Erro ao agendar. Tente novamente ou entre em contato via WhatsApp.",
       );
       setSubmitStatus("error");
     } finally {
