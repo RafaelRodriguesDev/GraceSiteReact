@@ -53,7 +53,7 @@ export function NewScheduling() {
   const [availableTimesForDate, setAvailableTimesForDate] = useState<
     CalendarEvent[]
   >([]);
-  const notifications = useNotifications();
+  // const notifications = useNotifications();
 
   useEffect(() => {
     loadEvents();
