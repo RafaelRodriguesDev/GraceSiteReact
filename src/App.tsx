@@ -4,7 +4,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ResponsiveNavbar } from "./components/ResponsiveNavbar";
 import { SwipeNavigationWrapper } from "./components/SwipeNavigationWrapper";
-import { Home } from "./pages/Home";
+import { NewHome as Home } from "./pages/NewHome";
 import { Portfolio } from "./pages/Portfolio";
 import { Scheduling } from "./pages/Scheduling";
 import { Sobre } from "./pages/Sobre";
