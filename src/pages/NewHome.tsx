@@ -61,7 +61,7 @@ export function NewHome() {
       </div>
 
       {/* Scrollable Content */}
-      <div className="relative z-10 h-full overflow-y-auto lg:overflow-visible pb-safe">
+      <div className="relative z-10 h-full overflow-y-auto lg:overflow-visible pb-safe hide-scrollbar">
         {/* Hero Section */}
         <section className="min-h-screen lg:min-h-screen flex items-center justify-center px-4 py-safe">
           <div
