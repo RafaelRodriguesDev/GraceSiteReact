@@ -505,17 +505,28 @@ const MosaicoAdmin: React.FC = () => {
                     <div className="flex gap-1">
                       <button
                         onClick={() => moveImage(image.id, "up")}
-                        disabled={index === 0}
+                        disabled={index === 0 || image.id.startsWith("static-")}
                         className="p-1 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        title="Mover para cima"
+                        title={
+                          image.id.startsWith("static-")
+                            ? "Não é possível reordenar imagens estáticas"
+                            : "Mover para cima"
+                        }
                       >
                         <ArrowUp className="h-3 w-3" />
                       </button>
                       <button
                         onClick={() => moveImage(image.id, "down")}
-                        disabled={index === images.length - 1}
+                        disabled={
+                          index === images.length - 1 ||
+                          image.id.startsWith("static-")
+                        }
                         className="p-1 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        title="Mover para baixo"
+                        title={
+                          image.id.startsWith("static-")
+                            ? "Não é possível reordenar imagens estáticas"
+                            : "Mover para baixo"
+                        }
                       >
                         <ArrowDown className="h-3 w-3" />
                       </button>
