@@ -200,15 +200,21 @@ const NewPropostas: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Carrossel Container */}
           <div
-            className="relative h-[600px] overflow-hidden"
+            className="relative h-[600px] overflow-hidden flex items-center justify-center"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
           >
             <div
-              className="flex items-center h-full transition-transform duration-700 ease-out"
+              className={`flex items-center h-full transition-transform duration-700 ease-out ${
+                propostas.length <= 7 ? "justify-center gap-4 px-4" : ""
+              }`}
               style={{
-                transform: getCarouselTransform(),
-                width: `${propostas.length * 33.33}%`,
+                transform:
+                  propostas.length <= 7 ? "none" : getCarouselTransform(),
+                width:
+                  propostas.length <= 7
+                    ? "auto"
+                    : `${propostas.length * 33.33}%`,
               }}
             >
               {propostas.map((proposta, index) => (
