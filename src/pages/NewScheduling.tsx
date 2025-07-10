@@ -127,6 +127,7 @@ export function NewScheduling() {
     }
 
     setSelectedDate(selectedDate);
+    console.log("setSelectedDate chamado com:", selectedDate);
 
     // Gerar horários disponíveis
     const allTimes: CalendarEvent[] = [];
