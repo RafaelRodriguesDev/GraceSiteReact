@@ -89,7 +89,18 @@ const NewPropostas: React.FC = () => {
     const diff = index - currentIndex;
     const totalItems = propostas.length;
 
-    // Normaliza a diferença para o range [-totalItems/2, totalItems/2]
+    // Para poucos itens (4-7), ajustar estratégia
+    if (totalItems <= 7) {
+      if (index === currentIndex) {
+        return "scale-110 z-30 opacity-100"; // Centro - destaque moderado
+      } else if (Math.abs(diff) === 1) {
+        return "scale-95 z-20 opacity-90"; // Laterais próximas
+      } else {
+        return "scale-85 z-10 opacity-70"; // Outros
+      }
+    }
+
+    // Para muitos itens, usar lógica circular
     let normalizedDiff = diff;
     if (diff > totalItems / 2) {
       normalizedDiff = diff - totalItems;
@@ -98,16 +109,27 @@ const NewPropostas: React.FC = () => {
     }
 
     if (normalizedDiff === 0) {
-      return "scale-125 z-30 opacity-100"; // Centro - maior destaque
+      return "scale-125 z-30 opacity-100"; // Centro
     } else if (Math.abs(normalizedDiff) === 1) {
-      return "scale-85 z-20 opacity-80"; // Laterais menores
+      return "scale-85 z-20 opacity-80"; // Laterais
     } else {
-      return "scale-75 z-10 opacity-40 hidden lg:block"; // Outros - escondidos em mobile
+      return "scale-75 z-10 opacity-40 hidden lg:block"; // Outros
     }
   };
 
   const getCarouselTransform = () => {
-    const baseTranslate = -currentIndex * 33.33; // 33.33% para 3 items visíveis
+    const totalItems = propostas.length;
+
+    // Para poucos itens, centralizar melhor
+    if (totalItems <= 7) {
+      const itemWidth = 100 / Math.min(totalItems, 3); // Máximo 3 visíveis
+      const centerOffset = (100 - itemWidth * Math.min(totalItems, 3)) / 2;
+      const baseTranslate = -currentIndex * itemWidth + centerOffset;
+      return `translateX(${baseTranslate}%)`;
+    }
+
+    // Para muitos itens, usar lógica original
+    const baseTranslate = -currentIndex * 33.33;
     return `translateX(calc(50% + ${baseTranslate}%))`;
   };
 
