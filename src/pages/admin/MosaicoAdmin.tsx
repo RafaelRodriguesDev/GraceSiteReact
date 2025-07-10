@@ -255,6 +255,28 @@ const MosaicoAdmin: React.FC = () => {
     }
   };
 
+  const handleMigrateStaticImages = async () => {
+    if (
+      !confirm(
+        "Isso irá adicionar as imagens estáticas ao banco de dados. Continuar?",
+      )
+    ) {
+      return;
+    }
+
+    try {
+      setMigrating(true);
+      await MosaicoService.migrateStaticImages();
+      showMessage("success", "Imagens estáticas migradas com sucesso!");
+      await loadImages();
+    } catch (error) {
+      console.error("Erro ao migrar imagens:", error);
+      showMessage("error", "Erro ao migrar imagens estáticas");
+    } finally {
+      setMigrating(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
