@@ -65,6 +65,10 @@ export function ResponsiveNavbar() {
   const navRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isLoggedPage =
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/admin/") ||
+    location.pathname === "/login";
 
   // Fecha o menu mobile quando a rota muda
   useEffect(() => {
