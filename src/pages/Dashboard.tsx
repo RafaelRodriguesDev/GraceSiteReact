@@ -433,7 +433,7 @@ export function Dashboard() {
                 <RefreshCw
                   className={`h-4 w-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
                 />
-                Atualizar
+                <span className="hidden sm:inline">Atualizar</span>
               </button>
 
               <a
