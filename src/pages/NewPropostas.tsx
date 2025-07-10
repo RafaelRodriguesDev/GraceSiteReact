@@ -186,14 +186,14 @@ const NewPropostas: React.FC = () => {
               className="flex items-center h-full transition-transform duration-700 ease-out"
               style={{
                 transform: getCarouselTransform(),
-                width: `${propostas.length * 25}%`,
+                width: `${propostas.length * 33.33}%`,
               }}
             >
               {propostas.map((proposta, index) => (
                 <div
                   key={proposta.id}
                   className={`w-full max-w-sm mx-auto transition-all duration-700 ease-out ${getCarouselItemClass(index)}`}
-                  style={{ flex: "0 0 25%" }}
+                  style={{ flex: "0 0 33.33%" }}
                 >
                   <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500">
                     {/* Thumbnail com overlay */}
