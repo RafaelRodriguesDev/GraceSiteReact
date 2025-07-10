@@ -107,6 +107,15 @@ const MosaicoAdmin: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
+    // Verificar se é uma imagem estática
+    if (id.startsWith("static-")) {
+      showMessage(
+        "error",
+        "Não é possível excluir imagens estáticas. Para gerenciar imagens, configure o banco de dados.",
+      );
+      return;
+    }
+
     if (!confirm("Tem certeza que deseja excluir esta imagem?")) {
       return;
     }
