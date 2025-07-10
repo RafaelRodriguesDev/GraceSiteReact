@@ -211,7 +211,11 @@ const NewPropostas: React.FC = () => {
                       )}
 
                       {/* Overlay com botão */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-all duration-300 flex items-center justify-center">
+                      <div
+                        className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 md:group-hover/card:opacity-100 md:transition-all md:duration-300 flex items-center justify-center
+                                      /* Mobile: sempre visível */
+                                      md:opacity-0 opacity-100"
+                      >
                         <Button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -219,7 +223,7 @@ const NewPropostas: React.FC = () => {
                           }}
                           variant="secondary"
                           leftIcon={<Download className="h-4 w-4" />}
-                          className="transform -translate-y-2 group-hover/card:translate-y-0 transition-transform duration-300"
+                          className="transform md:-translate-y-2 md:group-hover/card:translate-y-0 md:transition-transform md:duration-300 translate-y-0"
                         >
                           Baixar Proposta
                         </Button>
@@ -303,7 +307,7 @@ const NewPropostas: React.FC = () => {
             Pronta para capturar seus momentos?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto leading-relaxed">
-            Cada proposta é o primeiro passo para eternizar suas memórias mais
+            Cada proposta é o primeiro passo para eternizar suas mem��rias mais
             preciosas. Entre em contato e vamos conversar sobre como tornar seus
             sonhos realidade.
           </p>
