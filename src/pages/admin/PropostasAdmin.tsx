@@ -430,7 +430,7 @@ const PropostasAdmin: React.FC = () => {
               }}
             />
           )}
-        </div>
+                </div>
       </div>
     </div>
   );
