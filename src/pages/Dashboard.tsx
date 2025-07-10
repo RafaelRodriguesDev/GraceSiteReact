@@ -457,7 +457,7 @@ export function Dashboard() {
                 className="flex items-center px-3 py-2 text-sm font-medium text-white bg-pink-600 rounded-md hover:bg-pink-700"
               >
                 <LogOut className="h-4 w-4 mr-2" />
-                Sair
+                <span className="hidden sm:inline">Sair</span>
               </button>
             </div>
           </div>
