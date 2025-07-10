@@ -67,7 +67,7 @@ function App() {
               element={
                 <SwipeNavigationWrapper>
                   <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                    <Propostas />
+                    <NewPropostas />
                   </main>
                 </SwipeNavigationWrapper>
               }
