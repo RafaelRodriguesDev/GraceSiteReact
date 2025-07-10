@@ -28,7 +28,7 @@ function App() {
                 path="/"
                 element={
                   <SwipeNavigationWrapper>
-                    <main className="w-full lg:ml-[12%] lg:mr-0 pt-0 pb-20 lg:pb-0 px-0">
+                    <main className="w-full pt-0 pb-20 lg:pb-0 px-0">
                       <Home />
                     </main>
                   </SwipeNavigationWrapper>
@@ -38,7 +38,7 @@ function App() {
                 path="/portfolio"
                 element={
                   <SwipeNavigationWrapper>
-                    <main className="w-full lg:ml-[12%] lg:mr-0 pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <main className="w-full pt-16 lg:pt-0 pb-20 lg:pb-0">
                       <Portfolio />
                     </main>
                   </SwipeNavigationWrapper>
@@ -48,7 +48,7 @@ function App() {
                 path="/agendamento"
                 element={
                   <SwipeNavigationWrapper>
-                    <main className="w-full lg:ml-[12%] lg:mr-0 pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <main className="w-full pt-16 lg:pt-0 pb-20 lg:pb-0">
                       <Scheduling />
                     </main>
                   </SwipeNavigationWrapper>
@@ -58,7 +58,7 @@ function App() {
                 path="/sobre"
                 element={
                   <SwipeNavigationWrapper>
-                    <main className="w-full lg:ml-[12%] lg:mr-0 pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <main className="w-full pt-16 lg:pt-0 pb-20 lg:pb-0">
                       <Sobre />
                     </main>
                   </SwipeNavigationWrapper>
@@ -68,7 +68,7 @@ function App() {
                 path="/propostas"
                 element={
                   <SwipeNavigationWrapper>
-                    <main className="w-full lg:ml-[12%] lg:mr-0 pt-16 lg:pt-0 pb-20 lg:pb-0">
+                    <main className="w-full pt-16 lg:pt-0 pb-20 lg:pb-0">
                       <NewPropostas />
                     </main>
                   </SwipeNavigationWrapper>
