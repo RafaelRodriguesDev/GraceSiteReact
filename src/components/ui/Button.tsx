@@ -8,6 +8,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   children: React.ReactNode;
+  as?: "button" | "a";
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
 export function Button({
