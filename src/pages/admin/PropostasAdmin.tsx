@@ -231,6 +231,34 @@ const PropostasAdmin: React.FC = () => {
         </div>
       )}
 
+      {/* Controles de Seleção */}
+      {propostas.length > 0 && (
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="flex items-center justify-between">
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={
+                  selectedItems.size === propostas.length &&
+                  propostas.length > 0
+                }
+                onChange={handleSelectAll}
+                className="h-4 w-4 text-gray-900 focus:ring-gray-500 border-gray-300 rounded"
+              />
+              <span className="text-sm font-medium text-gray-700">
+                Selecionar todas ({propostas.length} propostas)
+              </span>
+            </label>
+
+            {selectedItems.size > 0 && (
+              <div className="text-sm text-gray-600">
+                {selectedItems.size} de {propostas.length} selecionadas
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Propostas Grid */}
       {propostas.length === 0 ? (
         <div className="text-center py-12">
