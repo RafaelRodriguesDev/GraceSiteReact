@@ -16,6 +16,7 @@ import PropostaForm from "../../components/propostas/PropostaForm";
 import { useAuth } from "../../contexts/AuthContext";
 
 const PropostasAdmin: React.FC = () => {
+  const { signOut } = useAuth();
   const [propostas, setPropostas] = useState<Proposta[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -200,7 +201,7 @@ const PropostasAdmin: React.FC = () => {
                 Gerenciar Propostas
               </h1>
               <p className="text-gray-600">
-                Gerencie as propostas que aparecem na página p��blica
+                Gerencie as propostas que aparecem na página pública
               </p>
             </div>
 
