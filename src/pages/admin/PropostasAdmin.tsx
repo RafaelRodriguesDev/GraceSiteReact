@@ -276,20 +276,32 @@ const PropostasAdmin: React.FC = () => {
           {propostas.map((proposta) => (
             <div
               key={proposta.id}
-              className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden"
+              className={`bg-white rounded-lg shadow-md border-2 overflow-hidden transition-all duration-200 ${
+                selectedItems.has(proposta.id)
+                  ? "border-gray-900 ring-2 ring-gray-200"
+                  : "border-gray-200"
+              }`}
             >
-              {/* Status Badge */}
+              {/* Checkbox e Status */}
               <div className="p-4 pb-0">
                 <div className="flex justify-between items-start mb-3">
-                  <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      proposta.ativo
-                        ? "bg-green-100 text-green-800"
-                        : "bg-gray-100 text-gray-800"
-                    }`}
-                  >
-                    {proposta.ativo ? "Ativo" : "Inativo"}
-                  </span>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedItems.has(proposta.id)}
+                      onChange={() => handleSelectItem(proposta.id)}
+                      className="h-4 w-4 text-gray-900 focus:ring-gray-500 border-gray-300 rounded"
+                    />
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        proposta.ativo
+                          ? "bg-green-100 text-green-800"
+                          : "bg-gray-100 text-gray-800"
+                      }`}
+                    >
+                      {proposta.ativo ? "Ativo" : "Inativo"}
+                    </span>
+                  </label>
                   <span className="text-xs text-gray-500">
                     Ordem: {proposta.ordem}
                   </span>
