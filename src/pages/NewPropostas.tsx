@@ -279,44 +279,22 @@ const NewPropostas: React.FC = () => {
         </div>
       </section>
 
-      {/* Proposta em Destaque */}
-      {currentProposta && (
-        <section className="py-16 px-4 bg-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              {currentProposta.titulo}
-            </h2>
-
-            {currentProposta.descricao && (
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                {currentProposta.descricao}
-              </p>
-            )}
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => handleDownload(currentProposta)}
-                size="lg"
-                leftIcon={<Download className="h-5 w-5" />}
-              >
-                Baixar Esta Proposta
-              </Button>
-
-              <Button
-                as="a"
-                href="https://wa.me/5511999999999"
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outline"
-                size="lg"
-                leftIcon={<Phone className="h-5 w-5" />}
-              >
-                Falar no WhatsApp
-              </Button>
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Seção simples apenas com WhatsApp */}
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-2xl mx-auto text-center">
+          <Button
+            as="a"
+            href="https://wa.me/5511999999999"
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+            leftIcon={<Phone className="h-5 w-5" />}
+            className="bg-green-600 hover:bg-green-700 text-white"
+          >
+            Falar no WhatsApp
+          </Button>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
