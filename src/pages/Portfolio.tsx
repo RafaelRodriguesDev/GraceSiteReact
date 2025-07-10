@@ -1,13 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { albumsService } from '../services/albumsService';
-import { Album, Foto } from '../types/albums';
+import React, { useState, useEffect } from "react";
+import { albumsService } from "../services/albumsService";
+import { Album, Foto } from "../types/albums";
 import {
   Camera,
   X,
   ChevronLeft,
   ChevronRight,
-  Image as ImageIcon
-} from 'lucide-react';
+  Image as ImageIcon,
+} from "lucide-react";
+import { LoadingSpinner } from "../components/ui/LoadingSpinner";
+import {
+  AlbumCardSkeleton,
+  PhotoCardSkeleton,
+} from "../components/ui/LoadingSkeleton";
+import {
+  NoAlbumsState,
+  NoPhotosState,
+  ErrorState,
+} from "../components/ui/EmptyState";
+import { Button } from "../components/ui/Button";
 
 export function Portfolio() {
   const [albums, setAlbums] = useState<Album[]>([]);
@@ -28,7 +39,7 @@ export function Portfolio() {
       const data = await albumsService.getAlbumsAtivos();
       setAlbums(data);
     } catch (error) {
-      console.error('Erro ao carregar álbuns:', error);
+      console.error("Erro ao carregar álbuns:", error);
     } finally {
       setLoading(false);
     }
@@ -40,7 +51,7 @@ export function Portfolio() {
       const fotos = await albumsService.getFotosByAlbum(albumId);
       setAlbumFotos(fotos);
     } catch (error) {
-      console.error('Erro ao carregar fotos:', error);
+      console.error("Erro ao carregar fotos:", error);
     } finally {
       setLoadingFotos(false);
     }
@@ -83,11 +94,11 @@ export function Portfolio() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       handleCloseLightbox();
-    } else if (e.key === 'ArrowLeft') {
+    } else if (e.key === "ArrowLeft") {
       handlePrevFoto();
-    } else if (e.key === 'ArrowRight') {
+    } else if (e.key === "ArrowRight") {
       handleNextFoto();
     }
   };
@@ -107,17 +118,24 @@ export function Portfolio() {
           // Lista de Álbuns
           <div>
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-light text-gray-900 mb-4">Portfólio</h1>
+              <h1 className="text-4xl font-light text-gray-900 mb-4">
+                Portfólio
+              </h1>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Explore nossa coleção de momentos especiais capturados com carinho e dedicação.
+                Explore nossa coleção de momentos especiais capturados com
+                carinho e dedicação.
               </p>
             </div>
 
             {albums.length === 0 ? (
               <div className="text-center py-16">
                 <Camera className="mx-auto h-16 w-16 text-gray-400" />
-                <h3 className="mt-4 text-lg font-medium text-gray-900">Em breve</h3>
-                <p className="mt-2 text-gray-500">Nossos álbuns de fotos estarão disponíveis em breve.</p>
+                <h3 className="mt-4 text-lg font-medium text-gray-900">
+                  Em breve
+                </h3>
+                <p className="mt-2 text-gray-500">
+                  Nossos álbuns de fotos estarão disponíveis em breve.
+                </p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -139,16 +157,20 @@ export function Portfolio() {
                           <ImageIcon className="h-12 w-12 text-gray-400" />
                         </div>
                       )}
-                      
+
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                         <Camera className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
                     </div>
-                    
+
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{album.titulo}</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {album.titulo}
+                      </h3>
                       {album.descricao && (
-                        <p className="text-gray-600 line-clamp-2">{album.descricao}</p>
+                        <p className="text-gray-600 line-clamp-2">
+                          {album.descricao}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -167,11 +189,15 @@ export function Portfolio() {
                 <ChevronLeft className="h-5 w-5 mr-1" />
                 Voltar aos álbuns
               </button>
-              
+
               <div className="text-center">
-                <h1 className="text-3xl font-light text-gray-900 mb-2">{selectedAlbum.titulo}</h1>
+                <h1 className="text-3xl font-light text-gray-900 mb-2">
+                  {selectedAlbum.titulo}
+                </h1>
                 {selectedAlbum.descricao && (
-                  <p className="text-lg text-gray-600 max-w-2xl mx-auto">{selectedAlbum.descricao}</p>
+                  <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    {selectedAlbum.descricao}
+                  </p>
                 )}
               </div>
             </div>
@@ -183,8 +209,12 @@ export function Portfolio() {
             ) : albumFotos.length === 0 ? (
               <div className="text-center py-16">
                 <ImageIcon className="mx-auto h-16 w-16 text-gray-400" />
-                <h3 className="mt-4 text-lg font-medium text-gray-900">Nenhuma foto encontrada</h3>
-                <p className="mt-2 text-gray-500">Este álbum ainda não possui fotos.</p>
+                <h3 className="mt-4 text-lg font-medium text-gray-900">
+                  Nenhuma foto encontrada
+                </h3>
+                <p className="mt-2 text-gray-500">
+                  Este álbum ainda não possui fotos.
+                </p>
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -197,20 +227,22 @@ export function Portfolio() {
                     <div className="aspect-square bg-gray-100 relative overflow-hidden">
                       <img
                         src={foto.thumbnail_url || foto.url}
-                        alt={foto.titulo || 'Foto'}
+                        alt={foto.titulo || "Foto"}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
-                      
+
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                         <div className="w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <ImageIcon className="h-4 w-4 text-gray-700" />
                         </div>
                       </div>
                     </div>
-                    
+
                     {foto.titulo && (
                       <div className="p-3">
-                        <h4 className="text-sm font-medium text-gray-900 truncate">{foto.titulo}</h4>
+                        <h4 className="text-sm font-medium text-gray-900 truncate">
+                          {foto.titulo}
+                        </h4>
                       </div>
                     )}
                   </div>
@@ -268,19 +300,23 @@ export function Portfolio() {
             <div className="relative">
               <img
                 src={selectedFoto.url}
-                alt={selectedFoto.titulo || 'Foto'}
+                alt={selectedFoto.titulo || "Foto"}
                 className="max-w-full max-h-[90vh] object-contain"
                 onClick={(e) => e.stopPropagation()}
               />
-              
+
               {/* Informações da foto */}
               {(selectedFoto.titulo || selectedFoto.descricao) && (
                 <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
                   {selectedFoto.titulo && (
-                    <h3 className="text-lg font-medium mb-1">{selectedFoto.titulo}</h3>
+                    <h3 className="text-lg font-medium mb-1">
+                      {selectedFoto.titulo}
+                    </h3>
                   )}
                   {selectedFoto.descricao && (
-                    <p className="text-sm text-gray-300">{selectedFoto.descricao}</p>
+                    <p className="text-sm text-gray-300">
+                      {selectedFoto.descricao}
+                    </p>
                   )}
                 </div>
               )}
