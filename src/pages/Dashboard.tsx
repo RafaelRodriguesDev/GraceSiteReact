@@ -605,62 +605,76 @@ export function Dashboard() {
 
                 return (
                   <div key={schedule.id} className="px-6 py-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                      {/* Conteúdo principal do card */}
                       <div className="flex-1">
                         <div className="flex items-center space-x-3">
                           <div
                             className={`flex-shrink-0 w-2 h-2 rounded-full ${config.color.split(" ")[0]}`}
                           ></div>
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-center space-x-3">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 gap-2 sm:gap-0">
                               <h3 className="text-sm font-medium text-gray-900 truncate">
                                 {schedule.client_name}
                               </h3>
                               <span
-                                className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${config.color}`}
+                                className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${config.color} self-start sm:self-auto`}
                               >
                                 <StatusIcon className="w-3 h-3 mr-1" />
                                 {config.label}
                               </span>
                             </div>
 
-                            <div className="mt-1 flex items-center space-x-4 text-sm text-gray-500">
+                            <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-sm text-gray-500">
                               <div className="flex items-center">
-                                <Calendar className="w-4 h-4 mr-1" />
-                                {formatDate(schedule.preferred_date)}
+                                <Calendar className="w-4 h-4 mr-1 flex-shrink-0" />
+                                <span className="truncate">
+                                  {formatDate(schedule.preferred_date)}
+                                </span>
                               </div>
                               <div className="flex items-center">
-                                <Clock className="w-4 h-4 mr-1" />
-                                {formatTime(schedule.preferred_time)}
+                                <Clock className="w-4 h-4 mr-1 flex-shrink-0" />
+                                <span className="truncate">
+                                  {formatTime(schedule.preferred_time)}
+                                </span>
                               </div>
                               <div className="flex items-center">
-                                <Phone className="w-4 h-4 mr-1" />
-                                {formatPhoneNumber(schedule.client_phone)}
+                                <Phone className="w-4 h-4 mr-1 flex-shrink-0" />
+                                <span className="truncate">
+                                  {formatPhoneNumber(schedule.client_phone)}
+                                </span>
                               </div>
                               {schedule.client_email && (
                                 <div className="flex items-center">
-                                  <Mail className="w-4 h-4 mr-1" />
-                                  {schedule.client_email}
+                                  <Mail className="w-4 h-4 mr-1 flex-shrink-0" />
+                                  <span className="truncate">
+                                    {schedule.client_email}
+                                  </span>
                                 </div>
                               )}
                             </div>
 
-                            <div className="mt-1 text-sm text-gray-600">
+                            <div className="mt-2 text-sm text-gray-600">
                               <span className="font-medium">Serviço:</span>{" "}
-                              {schedule.service_type}
+                              <span className="break-words">
+                                {schedule.service_type}
+                              </span>
                             </div>
 
                             {schedule.message && (
                               <div className="mt-2 text-sm text-gray-600">
                                 <span className="font-medium">Mensagem:</span>{" "}
-                                {schedule.message}
+                                <span className="break-words">
+                                  {schedule.message}
+                                </span>
                               </div>
                             )}
                           </div>
                         </div>
                       </div>
 
-                      <div className="flex items-center space-x-2">
+                      {/* Botões de ação - responsivos */}
+                      <div className="flex flex-wrap gap-2 justify-start lg:justify-end lg:flex-nowrap lg:items-center">
                         {/* Botões de contato - sempre visíveis */}
                         <button
                           onClick={() =>
@@ -669,7 +683,7 @@ export function Dashboard() {
                               schedule.client_name,
                             )
                           }
-                          className="inline-flex items-center px-2 py-1 border border-green-300 text-xs font-medium rounded text-green-700 bg-green-50 hover:bg-green-100"
+                          className="inline-flex items-center px-2 py-1 border border-green-300 text-xs font-medium rounded text-green-700 bg-green-50 hover:bg-green-100 min-h-[2rem] whitespace-nowrap"
                           title="Abrir WhatsApp"
                         >
                           <MessageSquare className="w-3 h-3 mr-1" />
@@ -677,7 +691,7 @@ export function Dashboard() {
                         </button>
                         <button
                           onClick={() => copyClientPhone(schedule.client_phone)}
-                          className="inline-flex items-center px-2 py-1 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-gray-50 hover:bg-gray-100"
+                          className="inline-flex items-center px-2 py-1 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-gray-50 hover:bg-gray-100 min-h-[2rem] whitespace-nowrap"
                           title="Copiar número"
                         >
                           <Phone className="w-3 h-3 mr-1" />
@@ -691,21 +705,21 @@ export function Dashboard() {
                               onClick={() =>
                                 handleStatusChange(schedule.id, "confirmed")
                               }
-                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700"
+                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 min-h-[2rem] whitespace-nowrap"
                             >
                               <CheckCircle className="w-3 h-3 mr-1" />
                               Confirmar
                             </button>
                             <button
                               onClick={() => openRescheduleModal(schedule)}
-                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-orange-600 hover:bg-orange-700"
+                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-orange-600 hover:bg-orange-700 min-h-[2rem] whitespace-nowrap"
                             >
                               <Edit className="w-3 h-3 mr-1" />
                               Alterar
                             </button>
                             <button
                               onClick={() => openCancelModal(schedule)}
-                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700"
+                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 min-h-[2rem] whitespace-nowrap"
                             >
                               <XCircle className="w-3 h-3 mr-1" />
                               Cancelar
@@ -719,21 +733,21 @@ export function Dashboard() {
                               onClick={() =>
                                 handleStatusChange(schedule.id, "completed")
                               }
-                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700"
+                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 min-h-[2rem] whitespace-nowrap"
                             >
                               <CheckCircle className="w-3 h-3 mr-1" />
                               Concluir
                             </button>
                             <button
                               onClick={() => openRescheduleModal(schedule)}
-                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-orange-600 hover:bg-orange-700"
+                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-orange-600 hover:bg-orange-700 min-h-[2rem] whitespace-nowrap"
                             >
                               <Edit className="w-3 h-3 mr-1" />
                               Alterar
                             </button>
                             <button
                               onClick={() => openCancelModal(schedule)}
-                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700"
+                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 min-h-[2rem] whitespace-nowrap"
                             >
                               <XCircle className="w-3 h-3 mr-1" />
                               Cancelar
@@ -747,14 +761,17 @@ export function Dashboard() {
                               onClick={() =>
                                 handleStatusChange(schedule.id, "confirmed")
                               }
-                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700"
+                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 min-h-[2rem] whitespace-nowrap"
                             >
                               <CheckCircle className="w-3 h-3 mr-1" />
-                              Confirmar Nova Data
+                              <span className="hidden sm:inline">
+                                Confirmar Nova Data
+                              </span>
+                              <span className="sm:hidden">Confirmar</span>
                             </button>
                             <button
                               onClick={() => openCancelModal(schedule)}
-                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700"
+                              className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 min-h-[2rem] whitespace-nowrap"
                             >
                               <XCircle className="w-3 h-3 mr-1" />
                               Cancelar
