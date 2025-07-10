@@ -206,15 +206,15 @@ const NewPropostas: React.FC = () => {
           >
             <div
               className={`flex items-center h-full transition-transform duration-700 ease-out ${
-                propostas.length <= 7 ? "justify-center gap-4 px-4" : ""
+                propostas.length <= 7 ? "gap-6" : ""
               }`}
               style={{
-                transform:
-                  propostas.length <= 7 ? "none" : getCarouselTransform(),
+                transform: getCarouselTransform(),
                 width:
                   propostas.length <= 7
-                    ? "auto"
+                    ? `${propostas.length * 340}px`
                     : `${propostas.length * 33.33}%`,
+                justifyContent: propostas.length <= 7 ? "flex-start" : "center",
               }}
             >
               {propostas.map((proposta, index) => (
