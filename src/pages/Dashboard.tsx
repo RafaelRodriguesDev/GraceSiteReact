@@ -424,7 +424,7 @@ export function Dashboard() {
               </p>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4">
               <button
                 onClick={handleRefresh}
                 disabled={refreshing}
@@ -678,7 +678,7 @@ export function Dashboard() {
                         <button
                           onClick={() => copyClientPhone(schedule.client_phone)}
                           className="inline-flex items-center px-2 py-1 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-gray-50 hover:bg-gray-100"
-                          title="Copiar n��mero"
+                          title="Copiar número"
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Copiar
