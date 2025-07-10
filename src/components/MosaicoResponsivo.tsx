@@ -137,8 +137,8 @@ export function MosaicoResponsivo({
         <div
           className="grid h-full w-full gap-1 sm:gap-2 lg:gap-3"
           style={{
-            gridTemplateColumns: "repeat(auto-fill, minmax(60px, 1fr))",
-            gridAutoRows: "minmax(60px, 1fr)",
+            gridTemplateColumns: `repeat(auto-fill, minmax(${gridSize}px, 1fr))`,
+            gridAutoRows: `minmax(${gridSize}px, 1fr)`,
           }}
         >
           {rotatedImages.map((src, idx) => (
