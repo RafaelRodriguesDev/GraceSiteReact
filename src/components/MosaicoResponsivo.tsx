@@ -150,42 +150,6 @@ export function MosaicoResponsivo({
           ))}
         </div>
       </div>
-
-      {/* Media queries via CSS-in-JS para melhor responsividade */}
-      <style jsx>{`
-        @media (max-width: 640px) {
-          .grid {
-            grid-template-columns: repeat(
-              auto-fill,
-              minmax(60px, 1fr)
-            ) !important;
-            grid-auto-rows: minmax(60px, 1fr) !important;
-            gap: 2px !important;
-          }
-        }
-
-        @media (min-width: 641px) and (max-width: 1024px) {
-          .grid {
-            grid-template-columns: repeat(
-              auto-fill,
-              minmax(100px, 1fr)
-            ) !important;
-            grid-auto-rows: minmax(100px, 1fr) !important;
-            gap: 4px !important;
-          }
-        }
-
-        @media (min-width: 1025px) {
-          .grid {
-            grid-template-columns: repeat(
-              auto-fill,
-              minmax(120px, 1fr)
-            ) !important;
-            grid-auto-rows: minmax(120px, 1fr) !important;
-            gap: 6px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
