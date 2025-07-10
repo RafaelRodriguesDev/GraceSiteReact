@@ -10,6 +10,7 @@ import {
   Check,
   AlertCircle,
   RefreshCw,
+  ArrowLeft,
 } from "lucide-react";
 import { MosaicoService, MosaicoImage } from "../../services/mosaicoService";
 
