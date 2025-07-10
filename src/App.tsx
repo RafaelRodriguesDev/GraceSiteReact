@@ -6,105 +6,108 @@ import { ResponsiveNavbar } from "./components/ResponsiveNavbar";
 import { SwipeNavigationWrapper } from "./components/SwipeNavigationWrapper";
 import { NewHome as Home } from "./pages/NewHome";
 import { NewPortfolio as Portfolio } from "./pages/NewPortfolio";
-import { Scheduling } from "./pages/Scheduling";
+import { NewScheduling as Scheduling } from "./pages/NewScheduling";
 import { NewSobre as Sobre } from "./pages/NewSobre";
 import NewPropostas from "./pages/NewPropostas";
 import PropostasAdmin from "./pages/admin/PropostasAdmin";
 import AlbumsAdmin from "./pages/AlbumsAdmin";
 import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
+import { ToastProvider } from "./components/ui/Toast";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="min-h-screen bg-white">
-          <ResponsiveNavbar />
-          <Routes>
-            {/* Rotas públicas */}
-            <Route
-              path="/"
-              element={
-                <SwipeNavigationWrapper>
-                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                    <Home />
-                  </main>
-                </SwipeNavigationWrapper>
-              }
-            />
-            <Route
-              path="/portfolio"
-              element={
-                <SwipeNavigationWrapper>
-                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                    <Portfolio />
-                  </main>
-                </SwipeNavigationWrapper>
-              }
-            />
-            <Route
-              path="/agendamento"
-              element={
-                <SwipeNavigationWrapper>
-                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                    <Scheduling />
-                  </main>
-                </SwipeNavigationWrapper>
-              }
-            />
-            <Route
-              path="/sobre"
-              element={
-                <SwipeNavigationWrapper>
-                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                    <Sobre />
-                  </main>
-                </SwipeNavigationWrapper>
-              }
-            />
-            <Route
-              path="/propostas"
-              element={
-                <SwipeNavigationWrapper>
-                  <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
-                    <NewPropostas />
-                  </main>
-                </SwipeNavigationWrapper>
-              }
-            />
+    <ToastProvider>
+      <AuthProvider>
+        <Router>
+          <div className="min-h-screen bg-white">
+            <ResponsiveNavbar />
+            <Routes>
+              {/* Rotas públicas */}
+              <Route
+                path="/"
+                element={
+                  <SwipeNavigationWrapper>
+                    <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                      <Home />
+                    </main>
+                  </SwipeNavigationWrapper>
+                }
+              />
+              <Route
+                path="/portfolio"
+                element={
+                  <SwipeNavigationWrapper>
+                    <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                      <Portfolio />
+                    </main>
+                  </SwipeNavigationWrapper>
+                }
+              />
+              <Route
+                path="/agendamento"
+                element={
+                  <SwipeNavigationWrapper>
+                    <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                      <Scheduling />
+                    </main>
+                  </SwipeNavigationWrapper>
+                }
+              />
+              <Route
+                path="/sobre"
+                element={
+                  <SwipeNavigationWrapper>
+                    <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                      <Sobre />
+                    </main>
+                  </SwipeNavigationWrapper>
+                }
+              />
+              <Route
+                path="/propostas"
+                element={
+                  <SwipeNavigationWrapper>
+                    <main className="w-full lg:ml-[15%] lg:mr-[2%] pt-16 lg:pt-0 pb-20 lg:pb-0">
+                      <NewPropostas />
+                    </main>
+                  </SwipeNavigationWrapper>
+                }
+              />
 
-            {/* Rota de login */}
-            <Route path="/login" element={<Login />} />
+              {/* Rota de login */}
+              <Route path="/login" element={<Login />} />
 
-            {/* Rotas protegidas */}
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/propostas"
-              element={
-                <ProtectedRoute>
-                  <PropostasAdmin />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/albums"
-              element={
-                <ProtectedRoute>
-                  <AlbumsAdmin />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+              {/* Rotas protegidas */}
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/propostas"
+                element={
+                  <ProtectedRoute>
+                    <PropostasAdmin />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/albums"
+                element={
+                  <ProtectedRoute>
+                    <AlbumsAdmin />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </div>
+        </Router>
+      </AuthProvider>
+    </ToastProvider>
   );
 }
 
