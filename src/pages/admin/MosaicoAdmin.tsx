@@ -16,6 +16,7 @@ import { MosaicoService, MosaicoImage } from "../../services/mosaicoService";
 import { useAuth } from "../../contexts/AuthContext";
 
 const MosaicoAdmin: React.FC = () => {
+  const { signOut } = useAuth();
   const [images, setImages] = useState<MosaicoImage[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
