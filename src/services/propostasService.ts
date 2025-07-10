@@ -1,13 +1,17 @@
-import { supabase } from '../lib/supabase';
-import { Proposta, CreatePropostaData, UpdatePropostaData } from '../types/propostas';
+import { supabase } from "../lib/supabase";
+import {
+  Proposta,
+  CreatePropostaData,
+  UpdatePropostaData,
+} from "../types/propostas";
 
 export class PropostasService {
   // Buscar todas as propostas (para admin)
   static async getAllPropostas(): Promise<Proposta[]> {
     const { data, error } = await supabase
-      .from('propostas')
-      .select('*')
-      .order('ordem', { ascending: true });
+      .from("propostas")
+      .select("*")
+      .order("ordem", { ascending: true });
 
     if (error) {
       throw new Error(`Erro ao buscar propostas: ${error.message}`);
@@ -19,10 +23,10 @@ export class PropostasService {
   // Buscar apenas propostas ativas (para página pública)
   static async getPropostasAtivas(): Promise<Proposta[]> {
     const { data, error } = await supabase
-      .from('propostas')
-      .select('*')
-      .eq('ativo', true)
-      .order('ordem', { ascending: true });
+      .from("propostas")
+      .select("*")
+      .eq("ativo", true)
+      .order("ordem", { ascending: true });
 
     if (error) {
       throw new Error(`Erro ao buscar propostas ativas: ${error.message}`);
@@ -34,13 +38,13 @@ export class PropostasService {
   // Buscar proposta por ID
   static async getPropostaById(id: string): Promise<Proposta | null> {
     const { data, error } = await supabase
-      .from('propostas')
-      .select('*')
-      .eq('id', id)
+      .from("propostas")
+      .select("*")
+      .eq("id", id)
       .single();
 
     if (error) {
-      if (error.code === 'PGRST116') {
+      if (error.code === "PGRST116") {
         return null; // Não encontrado
       }
       throw new Error(`Erro ao buscar proposta: ${error.message}`);
@@ -53,32 +57,38 @@ export class PropostasService {
   static async uploadArquivo(file: File): Promise<string> {
     const fileName = `${Date.now()}-${file.name}`;
     const { data, error } = await supabase.storage
-      .from('propostas')
+      .from("propostas")
       .upload(fileName, file);
 
     if (error) {
       throw new Error(`Erro ao fazer upload do arquivo: ${error.message}`);
     }
 
-    const { data: { publicUrl } } = supabase.storage
-      .from('propostas')
-      .getPublicUrl(fileName);
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from("propostas").getPublicUrl(fileName);
 
     return publicUrl;
   }
 
   // Criar nova proposta
-  static async createProposta(data: { titulo: string; descricao?: string; arquivo_url: string; ativo?: boolean; ordem?: number }): Promise<Proposta> {
+  static async createProposta(data: {
+    titulo: string;
+    descricao?: string;
+    arquivo_url: string;
+    ativo?: boolean;
+    ordem?: number;
+  }): Promise<Proposta> {
     const propostaData: CreatePropostaData = {
       titulo: data.titulo,
       descricao: data.descricao,
       arquivo_url: data.arquivo_url,
       ativo: data.ativo ?? true,
-      ordem: data.ordem ?? 0
+      ordem: data.ordem ?? 0,
     };
 
     const { data: proposta, error } = await supabase
-      .from('propostas')
+      .from("propostas")
       .insert([propostaData])
       .select()
       .single();
@@ -91,19 +101,28 @@ export class PropostasService {
   }
 
   // Atualizar proposta
-  static async updateProposta(id: string, data: { titulo?: string; descricao?: string; arquivo_url?: string; ativo?: boolean; ordem?: number }): Promise<Proposta> {
+  static async updateProposta(
+    id: string,
+    data: {
+      titulo?: string;
+      descricao?: string;
+      arquivo_url?: string;
+      ativo?: boolean;
+      ordem?: number;
+    },
+  ): Promise<Proposta> {
     let updateData: UpdatePropostaData = {
       titulo: data.titulo,
       descricao: data.descricao,
       arquivo_url: data.arquivo_url,
       ativo: data.ativo,
-      ordem: data.ordem
+      ordem: data.ordem,
     };
 
     const { data: proposta, error } = await supabase
-      .from('propostas')
+      .from("propostas")
       .update(updateData)
-      .eq('id', id)
+      .eq("id", id)
       .select()
       .single();
 
@@ -116,10 +135,27 @@ export class PropostasService {
 
   // Deletar proposta
   static async deleteProposta(id: string): Promise<void> {
-    const { error } = await supabase
-      .from('propostas')
-      .delete()
-      .eq('id', id);
+    // Primeiro buscar a proposta para obter o arquivo_url
+    const proposta = await this.getPropostaById(id);
+
+    if (proposta) {
+      // Extrair o caminho do arquivo da URL
+      try {
+        const url = new URL(proposta.arquivo_url);
+        const filePath = url.pathname.split("/").slice(-2).join("/"); // pega 'propostas/filename.pdf'
+
+        // Deletar o arquivo do storage
+        await this.deleteFile(filePath);
+      } catch (fileError) {
+        console.warn(
+          "Erro ao deletar arquivo, prosseguindo com deleção da proposta:",
+          fileError,
+        );
+      }
+    }
+
+    // Deletar a proposta do banco
+    const { error } = await supabase.from("propostas").delete().eq("id", id);
 
     if (error) {
       throw new Error(`Erro ao deletar proposta: ${error.message}`);
@@ -131,7 +167,7 @@ export class PropostasService {
     // Primeiro buscar o status atual
     const proposta = await this.getPropostaById(id);
     if (!proposta) {
-      throw new Error('Proposta não encontrada');
+      throw new Error("Proposta não encontrada");
     }
 
     // Alternar o status
@@ -140,22 +176,22 @@ export class PropostasService {
 
   // Upload de arquivo PDF
   static async uploadPDF(file: File, fileName?: string): Promise<string> {
-    const fileExt = file.name.split('.').pop();
+    const fileExt = file.name.split(".").pop();
     const finalFileName = fileName || `${Date.now()}.${fileExt}`;
     const filePath = `propostas/${finalFileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('propostas')
+      .from("propostas")
       .upload(filePath, file);
 
     if (uploadError) {
-      throw new Error(`Erro ao fazer upload do arquivo: ${uploadError.message}`);
+      throw new Error(
+        `Erro ao fazer upload do arquivo: ${uploadError.message}`,
+      );
     }
 
     // Retornar URL pública
-    const { data } = supabase.storage
-      .from('propostas')
-      .getPublicUrl(filePath);
+    const { data } = supabase.storage.from("propostas").getPublicUrl(filePath);
 
     return data.publicUrl;
   }
@@ -164,13 +200,13 @@ export class PropostasService {
   static async generateThumbnail(pdfUrl: string): Promise<string> {
     // Por enquanto, retorna uma URL placeholder
     // Futuramente pode ser implementado com PDF.js ou serviço externo
-    return '/images/pdf-placeholder.png';
+    return "/images/pdf-placeholder.png";
   }
 
   // Deletar arquivo do storage
   static async deleteFile(filePath: string): Promise<void> {
     const { error } = await supabase.storage
-      .from('propostas-pdfs')
+      .from("propostas-pdfs")
       .remove([filePath]);
 
     if (error) {
@@ -179,9 +215,11 @@ export class PropostasService {
   }
 
   // Reordenar propostas
-  static async reorderPropostas(propostas: { id: string; ordem: number }[]): Promise<void> {
-    const updates = propostas.map(({ id, ordem }) => 
-      this.updateProposta(id, { ordem })
+  static async reorderPropostas(
+    propostas: { id: string; ordem: number }[],
+  ): Promise<void> {
+    const updates = propostas.map(({ id, ordem }) =>
+      this.updateProposta(id, { ordem }),
     );
 
     await Promise.all(updates);
