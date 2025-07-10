@@ -63,16 +63,12 @@ export function NewHome() {
         >
           {/* Logo */}
           <div className="mb-8">
-            <img
-              src="/logo/LG_PRETO.png"
-              alt="Grace Fotografia Logo"
-              className="h-24 sm:h-32 md:h-40 w-auto mx-auto mb-4"
-            />
+            <Logo size="hero" className="mx-auto mb-4" />
           </div>
 
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-[HappyBirthday4] text-gray-900 mb-6 leading-tight">
-            Grace Fotografia
+            Momentos Únicos
           </h1>
 
           <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 mb-4 font-light">
