@@ -416,7 +416,7 @@ export function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center py-4 gap-4">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
                 Dashboard Administrativo
               </h1>
               <p className="text-sm text-gray-600">
@@ -678,7 +678,7 @@ export function Dashboard() {
                         <button
                           onClick={() => copyClientPhone(schedule.client_phone)}
                           className="inline-flex items-center px-2 py-1 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-gray-50 hover:bg-gray-100"
-                          title="Copiar número"
+                          title="Copiar n��mero"
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Copiar
