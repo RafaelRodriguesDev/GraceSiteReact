@@ -544,9 +544,16 @@ const MosaicoAdmin: React.FC = () => {
 
                       <button
                         onClick={() => handleDelete(image.id)}
-                        disabled={deletingId === image.id}
+                        disabled={
+                          deletingId === image.id ||
+                          image.id.startsWith("static-")
+                        }
                         className="p-1 bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors disabled:opacity-50"
-                        title="Excluir"
+                        title={
+                          image.id.startsWith("static-")
+                            ? "Não é possível excluir imagens estáticas"
+                            : "Excluir"
+                        }
                       >
                         {deletingId === image.id ? (
                           <RefreshCw className="h-3 w-3 animate-spin" />
