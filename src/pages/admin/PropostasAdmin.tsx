@@ -8,10 +8,12 @@ import {
   Upload,
   FileText,
   Download,
+  ArrowLeft,
 } from "lucide-react";
 import { PropostasService } from "../../services/propostasService";
 import { Proposta, PropostaFormData } from "../../types/propostas";
 import PropostaForm from "../../components/propostas/PropostaForm";
+import { useAuth } from "../../contexts/AuthContext";
 
 const PropostasAdmin: React.FC = () => {
   const [propostas, setPropostas] = useState<Proposta[]>([]);
@@ -198,7 +200,7 @@ const PropostasAdmin: React.FC = () => {
                 Gerenciar Propostas
               </h1>
               <p className="text-gray-600">
-                Gerencie as propostas que aparecem na página pública
+                Gerencie as propostas que aparecem na página p��blica
               </p>
             </div>
 
