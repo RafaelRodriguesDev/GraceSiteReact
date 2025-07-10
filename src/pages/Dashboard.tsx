@@ -455,6 +455,20 @@ export function Dashboard() {
                 <span className="hidden lg:inline ml-2">Álbuns</span>
               </a>
 
+              <a
+                href="/admin/mosaico"
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 min-w-[2.5rem]"
+                title="Gerenciar mosaico"
+              >
+                <div className="h-4 w-4 lg:mr-2 grid grid-cols-2 gap-0.5">
+                  <div className="bg-current rounded-sm"></div>
+                  <div className="bg-current rounded-sm"></div>
+                  <div className="bg-current rounded-sm"></div>
+                  <div className="bg-current rounded-sm"></div>
+                </div>
+                <span className="hidden lg:inline ml-2">Mosaico</span>
+              </a>
+
               <button
                 onClick={signOut}
                 className="flex items-center px-3 py-2 text-sm font-medium text-white bg-pink-600 rounded-md hover:bg-pink-700 min-w-[2.5rem]"
