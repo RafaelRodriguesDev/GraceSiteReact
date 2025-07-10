@@ -28,6 +28,7 @@ export function Portfolio() {
   const [currentFotoIndex, setCurrentFotoIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [loadingFotos, setLoadingFotos] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     loadAlbums();
