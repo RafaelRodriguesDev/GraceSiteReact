@@ -98,16 +98,16 @@ const NewPropostas: React.FC = () => {
     }
 
     if (normalizedDiff === 0) {
-      return "scale-110 z-20 opacity-100"; // Centro - destaque
+      return "scale-125 z-30 opacity-100"; // Centro - maior destaque
     } else if (Math.abs(normalizedDiff) === 1) {
-      return "scale-90 z-10 opacity-75"; // Laterais
+      return "scale-85 z-20 opacity-80"; // Laterais menores
     } else {
-      return "scale-75 z-0 opacity-50"; // Outros
+      return "scale-75 z-10 opacity-40 hidden lg:block"; // Outros - escondidos em mobile
     }
   };
 
   const getCarouselTransform = () => {
-    const baseTranslate = -currentIndex * 25; // 25% por item
+    const baseTranslate = -currentIndex * 33.33; // 33.33% para 3 items visíveis
     return `translateX(calc(50% + ${baseTranslate}%))`;
   };
 
