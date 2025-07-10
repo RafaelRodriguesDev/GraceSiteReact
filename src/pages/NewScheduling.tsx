@@ -27,7 +27,7 @@ import {
 import { Logo } from "../components/Logo";
 import { Button } from "../components/ui/Button";
 import { LoadingSpinner } from "../components/ui/LoadingSpinner";
-import { useNotifications } from "../components/ui/Toast";
+// import { useNotifications } from "../components/ui/Toast";
 
 export function NewScheduling() {
   const [isSubmitting, setIsSubmitting] = useState(false);
