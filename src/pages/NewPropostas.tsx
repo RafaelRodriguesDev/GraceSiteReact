@@ -120,12 +120,15 @@ const NewPropostas: React.FC = () => {
   const getCarouselTransform = () => {
     const totalItems = propostas.length;
 
-    // Para poucos itens, centralizar melhor
+    // Para poucos itens, centralizar o item atual
     if (totalItems <= 7) {
-      const itemWidth = 100 / Math.min(totalItems, 3); // Máximo 3 visíveis
-      const centerOffset = (100 - itemWidth * Math.min(totalItems, 3)) / 2;
-      const baseTranslate = -currentIndex * itemWidth + centerOffset;
-      return `translateX(${baseTranslate}%)`;
+      const containerWidth =
+        typeof window !== "undefined" ? window.innerWidth : 1200;
+      const itemWidth = 340; // largura fixa do item + gap
+      const visibleArea = Math.min(containerWidth - 200, 1000); // área visível menos margens
+      const centerOffset = (visibleArea - itemWidth) / 2;
+      const translateX = centerOffset - currentIndex * itemWidth;
+      return `translateX(${translateX}px)`;
     }
 
     // Para muitos itens, usar lógica original
