@@ -83,7 +83,9 @@ function App() {
                 path="/dashboard"
                 element={
                   <ProtectedRoute>
-                    <Dashboard />
+                    <main className="w-full min-h-screen">
+                      <Dashboard />
+                    </main>
                   </ProtectedRoute>
                 }
               />
@@ -91,7 +93,9 @@ function App() {
                 path="/admin/propostas"
                 element={
                   <ProtectedRoute>
-                    <PropostasAdmin />
+                    <main className="w-full min-h-screen">
+                      <PropostasAdmin />
+                    </main>
                   </ProtectedRoute>
                 }
               />
@@ -99,7 +103,9 @@ function App() {
                 path="/admin/albums"
                 element={
                   <ProtectedRoute>
-                    <AlbumsAdmin />
+                    <main className="w-full min-h-screen">
+                      <AlbumsAdmin />
+                    </main>
                   </ProtectedRoute>
                 }
               />
