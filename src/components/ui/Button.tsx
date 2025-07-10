@@ -23,6 +23,10 @@ export function Button({
   children,
   className = "",
   disabled,
+  as = "button",
+  href,
+  target,
+  rel,
   ...props
 }: ButtonProps) {
   const baseClasses = [
