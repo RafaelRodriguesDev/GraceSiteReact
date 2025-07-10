@@ -73,6 +73,28 @@ export function MosaicoResponsivo({
     return () => clearInterval(interval);
   }, [autoRotate, rotateInterval, images.length]);
 
+  // Ajustar tamanho do grid baseado no tamanho da tela
+  useEffect(() => {
+    const updateGridSize = () => {
+      const width = window.innerWidth;
+      if (width < 480) {
+        setGridSize(50);
+      } else if (width < 640) {
+        setGridSize(70);
+      } else if (width < 1024) {
+        setGridSize(90);
+      } else if (width < 1440) {
+        setGridSize(110);
+      } else {
+        setGridSize(130);
+      }
+    };
+
+    updateGridSize();
+    window.addEventListener("resize", updateGridSize);
+    return () => window.removeEventListener("resize", updateGridSize);
+  }, []);
+
   // Criar array rotacionado
   const rotatedImages =
     images.length > 0
