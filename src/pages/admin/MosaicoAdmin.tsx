@@ -13,6 +13,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { MosaicoService, MosaicoImage } from "../../services/mosaicoService";
+import { useAuth } from "../../contexts/AuthContext";
 
 const MosaicoAdmin: React.FC = () => {
   const [images, setImages] = useState<MosaicoImage[]>([]);
