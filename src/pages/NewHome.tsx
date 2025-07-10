@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import {
-  Camera,
-  Calendar,
-  Heart,
-  Star,
-  ArrowRight,
-  Instagram,
-  Phone,
-  Mail,
-} from "lucide-react";
-import { InstagramMosaic } from "./InstagramMosaicv";
-import { Logo } from "../components/Logo";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Camera, Calendar, Heart, Star, ArrowRight, Instagram, Phone, Mail } from 'lucide-react';
+import { InstagramMosaic } from './InstagramMosaicv';
+import { Logo } from '../components/Logo';
 
 export function NewHome() {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,18 +16,18 @@ export function NewHome() {
     {
       text: "Grace capturou nossa família de forma tão natural e genuína. As fotos ficaram lindas!",
       author: "Maria Silva",
-      role: "Mãe de 2 filhos",
+      role: "Mãe de 2 filhos"
     },
     {
       text: "Profissional incrível! Fez nosso casamento ficar ainda mais especial.",
       author: "João e Ana",
-      role: "Casal",
+      role: "Casal"
     },
     {
       text: "Recomendo de olhos fechados. Qualidade excepcional e carinho em cada foto.",
       author: "Carlos Mendes",
-      role: "Pai de família",
-    },
+      role: "Pai de família"
+    }
   ];
 
   useEffect(() => {
@@ -46,7 +37,7 @@ export function NewHome() {
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  return (
+    return (
     <div className="h-screen lg:min-h-screen relative overflow-hidden">
       {/* Background Mosaic */}
       <div className="absolute inset-0 z-0">
@@ -54,14 +45,14 @@ export function NewHome() {
         <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px]"></div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative z-10 min-h-screen flex items-center justify-center px-4">
-        <div
-          className={`text-center max-w-4xl mx-auto transform transition-all duration-1000 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
-        >
-          {/* Logo */}
+            {/* Scrollable Content */}
+      <div className="relative z-10 h-full overflow-y-auto lg:overflow-visible">
+        {/* Hero Section */}
+        <section className="min-h-screen lg:min-h-screen flex items-center justify-center px-4">
+        <div className={`text-center max-w-4xl mx-auto transform transition-all duration-1000 ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
+                    {/* Logo */}
           <div className="mb-8">
             <Logo size="hero" className="mx-auto mb-4" />
           </div>
@@ -70,15 +61,14 @@ export function NewHome() {
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-[HappyBirthday4] text-gray-900 mb-6 leading-tight">
             Momentos Únicos
           </h1>
-
+          
           <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 mb-4 font-light">
             Momentos únicos, memórias eternas
           </p>
-
+          
           <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Especializada em capturar a essência genuína de cada família,
-            transformando momentos especiais em lembranças que durarão para
-            sempre.
+            Especializada em capturar a essência genuína de cada família, 
+            transformando momentos especiais em lembranças que durarão para sempre.
           </p>
 
           {/* CTA Buttons */}
@@ -89,12 +79,9 @@ export function NewHome() {
             >
               <Camera size={20} />
               Ver Portfólio
-              <ArrowRight
-                size={20}
-                className="group-hover:translate-x-1 transition-transform"
-              />
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-
+            
             <Link
               to="/agendamento"
               className="group inline-flex items-center gap-2 border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-900 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
@@ -139,12 +126,10 @@ export function NewHome() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
                 <Heart className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Ensaio Família
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Ensaio Família</h3>
               <p className="text-gray-600 leading-relaxed">
-                Momentos únicos em família, capturando o amor e a conexão entre
-                vocês em cenários naturais e acolhedores.
+                Momentos únicos em família, capturando o amor e a conexão 
+                entre vocês em cenários naturais e acolhedores.
               </p>
             </div>
 
@@ -152,11 +137,9 @@ export function NewHome() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
                 <Camera className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Eventos Especiais
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Eventos Especiais</h3>
               <p className="text-gray-600 leading-relaxed">
-                Casamentos, batizados, aniversários e outras celebrações
+                Casamentos, batizados, aniversários e outras celebrações 
                 importantes da sua vida registradas com carinho.
               </p>
             </div>
@@ -165,11 +148,9 @@ export function NewHome() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
                 <Star className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Festa Infantil
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Festa Infantil</h3>
               <p className="text-gray-600 leading-relaxed">
-                A alegria e espontaneidade das crianças capturadas de forma
+                A alegria e espontaneidade das crianças capturadas de forma 
                 natural, preservando a magia da infância.
               </p>
             </div>
@@ -199,11 +180,7 @@ export function NewHome() {
               <div className="mb-6">
                 <div className="flex justify-center mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={20}
-                      className="text-yellow-400 fill-current"
-                    />
+                    <Star key={i} size={20} className="text-yellow-400 fill-current" />
                   ))}
                 </div>
                 <blockquote className="text-lg md:text-xl text-gray-700 italic leading-relaxed">
@@ -227,7 +204,7 @@ export function NewHome() {
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentTestimonial ? "bg-gray-900" : "bg-gray-300"
+                    index === currentTestimonial ? 'bg-gray-900' : 'bg-gray-300'
                   }`}
                 />
               ))}
@@ -243,8 +220,8 @@ export function NewHome() {
             Pronta para capturar seus momentos especiais?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Entre em contato e vamos conversar sobre como posso transformar seus
-            momentos únicos em memórias eternas.
+            Entre em contato e vamos conversar sobre como posso transformar 
+            seus momentos únicos em memórias eternas.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -255,7 +232,7 @@ export function NewHome() {
               <Calendar size={20} />
               Agendar Consulta
             </Link>
-
+            
             <a
               href="https://wa.me/5511999999999"
               target="_blank"
