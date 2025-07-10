@@ -13,6 +13,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import { Logo } from "../components/Logo";
 
 export function NewSobre() {
   const [isVisible, setIsVisible] = useState(false);
