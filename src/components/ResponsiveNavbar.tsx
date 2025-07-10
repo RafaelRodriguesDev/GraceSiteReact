@@ -64,6 +64,7 @@ export function ResponsiveNavbar() {
   const [isDragging, setIsDragging] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   // Fecha o menu mobile quando a rota muda
   useEffect(() => {
