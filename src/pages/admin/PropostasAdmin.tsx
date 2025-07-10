@@ -187,7 +187,7 @@ const PropostasAdmin: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
             Gerenciar Propostas
@@ -196,13 +196,32 @@ const PropostasAdmin: React.FC = () => {
             Gerencie as propostas que aparecem na página pública
           </p>
         </div>
-        <button
-          onClick={handleCreate}
-          className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 flex items-center gap-2"
-        >
-          <Plus className="h-4 w-4" />
-          Nova Proposta
-        </button>
+
+        <div className="flex flex-col sm:flex-row gap-3">
+          {selectedItems.size > 0 && (
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-gray-600">
+                {selectedItems.size} selecionada(s)
+              </span>
+              <button
+                onClick={handleDeleteSelected}
+                disabled={isDeleting}
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center gap-2 disabled:opacity-50"
+              >
+                <Trash2 className="h-4 w-4" />
+                {isDeleting ? "Excluindo..." : "Excluir Selecionadas"}
+              </button>
+            </div>
+          )}
+
+          <button
+            onClick={handleCreate}
+            className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 flex items-center gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Nova Proposta
+          </button>
+        </div>
       </div>
 
       {/* Error Message */}
