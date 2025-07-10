@@ -10,7 +10,7 @@ import {
   Phone,
   Mail,
 } from "lucide-react";
-import { InstagramMosaic } from "./InstagramMosaicv";
+import { MosaicoResponsivo } from "../components/MosaicoResponsivo";
 import { Logo } from "../components/Logo";
 
 export function NewHome() {
