@@ -47,7 +47,7 @@ export function NewHome() {
   }, [testimonials.length]);
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="h-screen lg:min-h-screen relative overflow-hidden">
       {/* Background Mosaic */}
       <div className="absolute inset-0 z-0">
         <InstagramMosaic />
