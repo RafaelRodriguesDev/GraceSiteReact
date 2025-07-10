@@ -1,3 +1,22 @@
 [build]
-  command = "npm run build" # Usa o script "build" do package.json
-  publish = "dist"          # Diretório de saída padrão do Vite
+  command = "npm run build"
+  publish = "dist"
+  
+[build.environment]
+  # Variáveis públicas que podem estar sempre disponíveis
+  VITE_SUPABASE_URL = "https://iasmacaacbirfkjvgpda.supabase.co"
+  VITE_WHATSAPP_API_URL = "https://graph.facebook.com/v17.0/24598328053090884/messages"
+  VITE_APPOINTMENT_DURATION = "60"
+  
+# Configurações para deploy previews
+[context.deploy-preview]
+  command = "npm run build"
+  
+[context.branch-deploy]
+  command = "npm run build"
+
+# Redirecionamentos para SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

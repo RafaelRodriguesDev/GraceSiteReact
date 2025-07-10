@@ -1,50 +1,90 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import { Portfolio } from './pages/Portfolio';
+import { Scheduling } from './pages/Scheduling';
 import { Sobre } from './pages/Sobre';
-import { Agenda } from './pages/Agenda';
-import  Propostas  from './pages/Propostas';
-import PDFCarouselTest from './pages/PDFCarouselTest';
+import Propostas from './pages/Propostas';
+import PropostasAdmin from './pages/admin/PropostasAdmin';
+import AlbumsAdmin from './pages/AlbumsAdmin';
+import { Login } from './pages/Login';
+import { Dashboard } from './pages/Dashboard';
 
 function App() {
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
-      <div className="min-h-screen bg-white">
-        <AppContent />
-      </div>
-    </BrowserRouter>
+    <AuthProvider>
+      <Router>
+        <div className="min-h-screen bg-white">
+          <Routes>
+            {/* Rotas públicas */}
+            <Route path="/" element={
+              <>
+                <Navbar />
+                <main className="w-full">
+                  <Home />
+                </main>
+              </>
+            } />
+            <Route path="/portfolio" element={
+              <>
+                <Navbar />
+                <main className="w-full">
+                  <Portfolio />
+                </main>
+              </>
+            } />
+            <Route path="/agendamento" element={
+              <>
+                <Navbar />
+                <main className="w-full">
+                  <Scheduling />
+                </main>
+              </>
+            } />
+            <Route path="/sobre" element={
+              <>
+                <Navbar />
+                <main className="w-full">
+                  <Sobre />
+                </main>
+              </>
+            } />
+            <Route path="/propostas" element={
+              <>
+                <Navbar />
+                <main className="w-full">
+                  <Propostas />
+                </main>
+              </>
+            } />
+            
+            {/* Rota de login */}
+            <Route path="/login" element={<Login />} />
+            
+            {/* Rotas protegidas */}
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/propostas" element={
+              <ProtectedRoute>
+                <PropostasAdmin />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/albums" element={
+              <ProtectedRoute>
+                <AlbumsAdmin />
+              </ProtectedRoute>
+            } />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
-function AppContent() {
-  const location = useLocation();
-  const isAgendaPage = location.pathname === '/agendamento';
-
-  const computedClassName: string = isAgendaPage
-    ? 'fixed bottom-0 left-0 w-full h-16 bg-white/80 backdrop-blur-sm border-t border-gray-200 flex justify-center items-center'
-    : '';
-
-  return (
-    <>
-      <main className="w-full">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/agendamento" element={<Agenda />} />
-          <Route path="/propostas" element={<Propostas />} />
-        </Routes>
-      </main>
-      <Navbar className={computedClassName} />
-    </>
-  );
-}
-
-export default App;
+export default App
