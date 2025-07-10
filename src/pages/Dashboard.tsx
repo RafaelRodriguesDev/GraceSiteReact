@@ -424,40 +424,44 @@ export function Dashboard() {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+            <div className="flex flex-wrap items-center gap-2 lg:gap-4">
               <button
                 onClick={handleRefresh}
                 disabled={refreshing}
-                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 min-w-[2.5rem]"
+                title="Atualizar dados"
               >
                 <RefreshCw
-                  className={`h-4 w-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
+                  className={`h-4 w-4 ${refreshing ? "animate-spin" : ""} ${"lg:mr-2"}`}
                 />
-                <span className="hidden sm:inline">Atualizar</span>
+                <span className="hidden lg:inline ml-2">Atualizar</span>
               </button>
 
               <a
                 href="/admin/propostas"
-                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 min-w-[2.5rem]"
+                title="Gerenciar propostas"
               >
-                <Edit className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Propostas</span>
+                <Edit className="h-4 w-4 lg:mr-2" />
+                <span className="hidden lg:inline ml-2">Propostas</span>
               </a>
 
               <a
                 href="/admin/albums"
-                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 min-w-[2.5rem]"
+                title="Gerenciar álbuns"
               >
-                <Camera className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Álbuns</span>
+                <Camera className="h-4 w-4 lg:mr-2" />
+                <span className="hidden lg:inline ml-2">Álbuns</span>
               </a>
 
               <button
                 onClick={signOut}
-                className="flex items-center px-3 py-2 text-sm font-medium text-white bg-pink-600 rounded-md hover:bg-pink-700"
+                className="flex items-center px-3 py-2 text-sm font-medium text-white bg-pink-600 rounded-md hover:bg-pink-700 min-w-[2.5rem]"
+                title="Sair do sistema"
               >
-                <LogOut className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Sair</span>
+                <LogOut className="h-4 w-4 lg:mr-2" />
+                <span className="hidden lg:inline ml-2">Sair</span>
               </button>
             </div>
           </div>
