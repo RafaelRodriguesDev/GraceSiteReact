@@ -18,19 +18,6 @@
     overflow-x: hidden;
   }
 
-  /* Oculta scrollbar nas páginas públicas mas mantém funcionalidade */
-  .hide-scrollbar {
-    /* Firefox */
-    scrollbar-width: none;
-    /* Internet Explorer 10+ */
-    -ms-overflow-style: none;
-  }
-
-  .hide-scrollbar::-webkit-scrollbar {
-    /* WebKit browsers */
-    display: none;
-  }
-
   /* Suporte para swipe gestures em mobile */
   * {
     -webkit-touch-callout: none;

@@ -35,7 +35,6 @@ export function MosaicoResponsivo({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [gridSize, setGridSize] = useState(60);
 
   // Carregar imagens do banco ou usar fallback
   useEffect(() => {
@@ -72,28 +71,6 @@ export function MosaicoResponsivo({
 
     return () => clearInterval(interval);
   }, [autoRotate, rotateInterval, images.length]);
-
-  // Ajustar tamanho do grid baseado no tamanho da tela
-  useEffect(() => {
-    const updateGridSize = () => {
-      const width = window.innerWidth;
-      if (width < 480) {
-        setGridSize(50);
-      } else if (width < 640) {
-        setGridSize(70);
-      } else if (width < 1024) {
-        setGridSize(90);
-      } else if (width < 1440) {
-        setGridSize(110);
-      } else {
-        setGridSize(130);
-      }
-    };
-
-    updateGridSize();
-    window.addEventListener("resize", updateGridSize);
-    return () => window.removeEventListener("resize", updateGridSize);
-  }, []);
 
   // Criar array rotacionado
   const rotatedImages =
@@ -135,10 +112,10 @@ export function MosaicoResponsivo({
       {/* Grid responsivo de imagens */}
       <div className="absolute inset-0 overflow-hidden">
         <div
-          className="grid h-full w-full gap-1 sm:gap-2 lg:gap-3"
+          className="grid gap-1 sm:gap-2 h-full w-full"
           style={{
-            gridTemplateColumns: `repeat(auto-fill, minmax(${gridSize}px, 1fr))`,
-            gridAutoRows: `minmax(${gridSize}px, 1fr)`,
+            gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
+            gridAutoRows: "minmax(80px, 1fr)",
           }}
         >
           {rotatedImages.map((src, idx) => (
@@ -179,6 +156,42 @@ export function MosaicoResponsivo({
           ))}
         </div>
       </div>
+
+      {/* Media queries via CSS-in-JS para melhor responsividade */}
+      <style jsx>{`
+        @media (max-width: 640px) {
+          .grid {
+            grid-template-columns: repeat(
+              auto-fill,
+              minmax(60px, 1fr)
+            ) !important;
+            grid-auto-rows: minmax(60px, 1fr) !important;
+            gap: 2px !important;
+          }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .grid {
+            grid-template-columns: repeat(
+              auto-fill,
+              minmax(100px, 1fr)
+            ) !important;
+            grid-auto-rows: minmax(100px, 1fr) !important;
+            gap: 4px !important;
+          }
+        }
+
+        @media (min-width: 1025px) {
+          .grid {
+            grid-template-columns: repeat(
+              auto-fill,
+              minmax(120px, 1fr)
+            ) !important;
+            grid-auto-rows: minmax(120px, 1fr) !important;
+            gap: 6px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

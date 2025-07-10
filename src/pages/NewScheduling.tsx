@@ -303,7 +303,7 @@ export function NewScheduling() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white hide-scrollbar">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
       <section className="py-16 px-4 text-center bg-white border-b">
         <div className="max-w-4xl mx-auto">

@@ -89,18 +89,7 @@ const NewPropostas: React.FC = () => {
     const diff = index - currentIndex;
     const totalItems = propostas.length;
 
-    // Para poucos itens (4-7), ajustar estratégia
-    if (totalItems <= 7) {
-      if (index === currentIndex) {
-        return "scale-110 z-30 opacity-100"; // Centro - destaque moderado
-      } else if (Math.abs(diff) === 1) {
-        return "scale-95 z-20 opacity-90"; // Laterais próximas
-      } else {
-        return "scale-85 z-10 opacity-70"; // Outros
-      }
-    }
-
-    // Para muitos itens, usar lógica circular
+    // Normaliza a diferença para o range [-totalItems/2, totalItems/2]
     let normalizedDiff = diff;
     if (diff > totalItems / 2) {
       normalizedDiff = diff - totalItems;
@@ -109,30 +98,16 @@ const NewPropostas: React.FC = () => {
     }
 
     if (normalizedDiff === 0) {
-      return "scale-125 z-30 opacity-100"; // Centro
+      return "scale-125 z-30 opacity-100"; // Centro - maior destaque
     } else if (Math.abs(normalizedDiff) === 1) {
-      return "scale-85 z-20 opacity-80"; // Laterais
+      return "scale-85 z-20 opacity-80"; // Laterais menores
     } else {
-      return "scale-75 z-10 opacity-40 hidden lg:block"; // Outros
+      return "scale-75 z-10 opacity-40 hidden lg:block"; // Outros - escondidos em mobile
     }
   };
 
   const getCarouselTransform = () => {
-    const totalItems = propostas.length;
-
-    // Para poucos itens, centralizar o item atual
-    if (totalItems <= 7) {
-      const containerWidth =
-        typeof window !== "undefined" ? window.innerWidth : 1200;
-      const itemWidth = 340; // largura fixa do item + gap
-      const visibleArea = Math.min(containerWidth - 200, 1000); // área visível menos margens
-      const centerOffset = (visibleArea - itemWidth) / 2;
-      const translateX = centerOffset - currentIndex * itemWidth;
-      return `translateX(${translateX}px)`;
-    }
-
-    // Para muitos itens, usar lógica original
-    const baseTranslate = -currentIndex * 33.33;
+    const baseTranslate = -currentIndex * 33.33; // 33.33% para 3 items visíveis
     return `translateX(calc(50% + ${baseTranslate}%))`;
   };
 
@@ -178,7 +153,7 @@ const NewPropostas: React.FC = () => {
   const currentProposta = propostas[currentIndex];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white hide-scrollbar">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
       <section className="relative py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
@@ -203,33 +178,22 @@ const NewPropostas: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Carrossel Container */}
           <div
-            className="relative h-[600px] overflow-hidden flex items-center justify-center"
+            className="relative h-[600px] overflow-hidden"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
           >
             <div
-              className={`flex items-center h-full transition-transform duration-700 ease-out ${
-                propostas.length <= 7 ? "gap-6" : ""
-              }`}
+              className="flex items-center h-full transition-transform duration-700 ease-out"
               style={{
                 transform: getCarouselTransform(),
-                width:
-                  propostas.length <= 7
-                    ? `${propostas.length * 340}px`
-                    : `${propostas.length * 33.33}%`,
-                justifyContent: propostas.length <= 7 ? "flex-start" : "center",
+                width: `${propostas.length * 33.33}%`,
               }}
             >
               {propostas.map((proposta, index) => (
                 <div
                   key={proposta.id}
-                  className={`w-full max-w-sm transition-all duration-700 ease-out ${getCarouselItemClass(index)} ${
-                    propostas.length <= 7 ? "flex-shrink-0" : "mx-auto"
-                  }`}
-                  style={{
-                    flex: propostas.length <= 7 ? "0 0 auto" : "0 0 33.33%",
-                    width: propostas.length <= 7 ? "320px" : "auto",
-                  }}
+                  className={`w-full max-w-sm mx-auto transition-all duration-700 ease-out ${getCarouselItemClass(index)}`}
+                  style={{ flex: "0 0 33.33%" }}
                 >
                   <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500">
                     {/* Thumbnail com overlay */}
@@ -319,33 +283,20 @@ const NewPropostas: React.FC = () => {
         </div>
       </section>
 
-      {/* Seção com WhatsApp e Agendamento */}
+      {/* Seção simples apenas com WhatsApp */}
       <section className="py-12 px-4 bg-white">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              as="a"
-              href="https://wa.me/5511999999999"
-              target="_blank"
-              rel="noopener noreferrer"
-              size="lg"
-              leftIcon={<Phone className="h-5 w-5" />}
-              className="bg-green-600 hover:bg-green-700 text-white"
-            >
-              Falar no WhatsApp
-            </Button>
-
-            <Link to="/agendamento">
-              <Button
-                size="lg"
-                leftIcon={<Calendar className="h-5 w-5" />}
-                rightIcon={<ArrowRight className="h-5 w-5" />}
-                className="bg-gray-900 hover:bg-gray-800 text-white"
-              >
-                Agendar Consulta
-              </Button>
-            </Link>
-          </div>
+          <Button
+            as="a"
+            href="https://wa.me/5511999999999"
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+            leftIcon={<Phone className="h-5 w-5" />}
+            className="bg-green-600 hover:bg-green-700 text-white"
+          >
+            Falar no WhatsApp
+          </Button>
         </div>
       </section>
 
@@ -387,7 +338,19 @@ const NewPropostas: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              as="a"
+              href="https://wa.me/5511999999999"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="secondary"
+              size="lg"
+              leftIcon={<Phone className="h-5 w-5" />}
+            >
+              Chamar no WhatsApp
+            </Button>
+
             <Link to="/agendamento">
               <Button
                 variant="outline"
