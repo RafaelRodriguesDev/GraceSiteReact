@@ -102,12 +102,7 @@ export function ResponsiveNavbar() {
       <nav className="hidden lg:block fixed left-[5%] top-1/2 -translate-y-1/2 w-[9%] bg-white/80 backdrop-blur-sm z-50 rounded-2xl shadow-lg border border-gray-100 py-8 overflow-y-auto max-h-[90vh]">
         <div className="flex flex-col items-center space-y-6">
           {/* Logo */}
-          <Link to="/" className="flex flex-col items-center space-y-2">
-            <Camera className="h-8 w-8 text-gray-900" />
-            <span className="text-xs font-light tracking-wider text-center">
-              GraceFotografia
-            </span>
-          </Link>
+          <Logo as="link" size="md" className="mb-2" />
 
           {/* Links Principais */}
           <div className="flex flex-col items-center space-y-4">
@@ -152,12 +147,7 @@ export function ResponsiveNavbar() {
       {/* Mobile/Tablet Header */}
       <header className="lg:hidden fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-40 border-b border-gray-100">
         <div className="flex items-center justify-between px-4 py-3">
-          <Link to="/" className="flex items-center space-x-2">
-            <Camera className="h-6 w-6 text-gray-900" />
-            <span className="text-lg font-medium tracking-wide">
-              Grace Fotografia
-            </span>
-          </Link>
+          <Logo as="link" size="sm" />
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -179,10 +169,7 @@ export function ResponsiveNavbar() {
           <div className="bg-white h-full w-80 max-w-[80vw] shadow-xl">
             <div className="p-6">
               <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center space-x-2">
-                  <Camera className="h-6 w-6 text-gray-900" />
-                  <span className="text-lg font-medium">Grace Fotografia</span>
-                </div>
+                <Logo size="sm" />
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="p-2 text-gray-600 hover:text-gray-900"
