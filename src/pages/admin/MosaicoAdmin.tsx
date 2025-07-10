@@ -325,6 +325,22 @@ const MosaicoAdmin: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
+              {/* Botão de migração para imagens estáticas */}
+              {images.length > 0 && images[0].id.startsWith("static-") && (
+                <button
+                  onClick={handleMigrateStaticImages}
+                  disabled={migrating}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center gap-2 disabled:opacity-50"
+                >
+                  {migrating ? (
+                    <RefreshCw className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Upload className="h-4 w-4" />
+                  )}
+                  {migrating ? "Migrando..." : "Migrar para Banco"}
+                </button>
+              )}
+
               {selectedImages.size > 0 && (
                 <div className="flex items-center gap-3">
                   <span className="text-sm text-gray-600">
