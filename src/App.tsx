@@ -7,7 +7,7 @@ import { SwipeNavigationWrapper } from "./components/SwipeNavigationWrapper";
 import { NewHome as Home } from "./pages/NewHome";
 import { Portfolio } from "./pages/Portfolio";
 import { Scheduling } from "./pages/Scheduling";
-import { Sobre } from "./pages/Sobre";
+import { NewSobre as Sobre } from "./pages/NewSobre";
 import Propostas from "./pages/Propostas";
 import PropostasAdmin from "./pages/admin/PropostasAdmin";
 import AlbumsAdmin from "./pages/AlbumsAdmin";
