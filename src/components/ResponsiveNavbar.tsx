@@ -12,6 +12,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { Logo } from "./Logo";
 
 interface NavItem {
   to: string;
