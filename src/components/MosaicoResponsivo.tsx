@@ -111,13 +111,7 @@ export function MosaicoResponsivo({
 
       {/* Grid responsivo de imagens */}
       <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="grid gap-1 sm:gap-2 h-full w-full"
-          style={{
-            gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
-            gridAutoRows: "minmax(80px, 1fr)",
-          }}
-        >
+        <div className="grid h-full w-full gap-0.5 sm:gap-1 md:gap-2 lg:gap-3 grid-cols-[repeat(auto-fill,minmax(50px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(70px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(90px,1fr))] lg:grid-cols-[repeat(auto-fill,minmax(110px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(130px,1fr))]">
           {rotatedImages.map((src, idx) => (
             <div
               key={`${src}-${idx}`}
