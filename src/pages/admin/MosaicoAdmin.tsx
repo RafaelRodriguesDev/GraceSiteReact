@@ -25,6 +25,7 @@ const MosaicoAdmin: React.FC = () => {
     type: "success" | "error";
     text: string;
   } | null>(null);
+  const [migrating, setMigrating] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
