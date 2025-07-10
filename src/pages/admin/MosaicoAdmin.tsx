@@ -34,8 +34,16 @@ const MosaicoAdmin: React.FC = () => {
   const loadImages = async () => {
     try {
       setLoading(true);
-      const data = await MosaicoService.getAllImages();
+      const data = await MosaicoService.getAllImagesWithFallback();
       setImages(data);
+
+      // Se estamos usando imagens estáticas, mostrar informação para o usuário
+      if (data.length > 0 && data[0].id.startsWith("static-")) {
+        showMessage(
+          "success",
+          "Carregando imagens estáticas da pasta /images/. Para usar o sistema completo, configure o banco de dados.",
+        );
+      }
     } catch (err) {
       showMessage("error", "Erro ao carregar imagens do mosaico");
       console.error("Erro ao carregar imagens:", err);
