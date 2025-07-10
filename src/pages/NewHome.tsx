@@ -11,6 +11,7 @@ import {
   Mail,
 } from "lucide-react";
 import { InstagramMosaic } from "./InstagramMosaicv";
+import { Logo } from "../components/Logo";
 
 export function NewHome() {
   const [isVisible, setIsVisible] = useState(false);
