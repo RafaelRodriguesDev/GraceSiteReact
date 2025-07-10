@@ -64,7 +64,7 @@ export function ResponsiveNavbar() {
   const [isDragging, setIsDragging] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isHomePage = location.pathname === "/";
 
   // Fecha o menu mobile quando a rota muda
   useEffect(() => {
@@ -145,25 +145,26 @@ export function ResponsiveNavbar() {
         </div>
       </nav>
 
-            {/* Mobile/Tablet Header - Hidden on Home page */}
+      {/* Mobile/Tablet Header - Hidden on Home page */}
       {!isHomePage && (
         <header className="lg:hidden fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-40 border-b border-gray-100">
-        <div className="flex items-center justify-between px-4 py-3">
-          <Logo as="link" size="sm" />
+          <div className="flex items-center justify-between px-4 py-3">
+            <Logo as="link" size="sm" />
 
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-gray-600 hover:text-gray-900"
-            aria-label="Menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
-        </div>
-      </header>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-gray-600 hover:text-gray-900"
+              aria-label="Menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+        </header>
+      )}
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
