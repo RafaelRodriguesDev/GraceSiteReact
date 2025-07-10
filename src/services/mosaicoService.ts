@@ -173,8 +173,8 @@ export class MosaicoService {
     }
   }
 
-  // Migrar imagens estáticas existentes para o banco (útil para migração)
-  static async migrateStaticImages(): Promise<void> {
+  // Obter imagens estáticas como objetos MosaicoImage (fallback)
+  static getStaticImages(): MosaicoImage[] {
     const staticImagePaths = [
       "/images/image1.jpg",
       "/images/image2.jpg",
@@ -188,11 +188,41 @@ export class MosaicoService {
       "/images/image10.jpg",
     ];
 
-    for (let i = 0; i < staticImagePaths.length; i++) {
+    return staticImagePaths.map((path, index) => ({
+      id: `static-${index + 1}`,
+      filename: `image${index + 1}.jpg`,
+      url: path,
+      created_at: new Date().toISOString(),
+      ordem: index + 1,
+    }));
+  }
+
+  // Obter todas as imagens (com fallback para estáticas)
+  static async getAllImagesWithFallback(): Promise<MosaicoImage[]> {
+    try {
+      const dbImages = await this.getAllImages();
+
+      // Se não há imagens no banco, usar imagens estáticas
+      if (dbImages.length === 0) {
+        return this.getStaticImages();
+      }
+
+      return dbImages;
+    } catch (error) {
+      console.warn("Erro ao buscar imagens, usando estáticas:", error);
+      return this.getStaticImages();
+    }
+  }
+
+  // Migrar imagens estáticas existentes para o banco (útil para migração)
+  static async migrateStaticImages(): Promise<void> {
+    const staticImages = this.getStaticImages();
+
+    for (const image of staticImages) {
       try {
-        await this.addImage(`image${i + 1}.jpg`, staticImagePaths[i], i + 1);
+        await this.addImage(image.filename, image.url, image.ordem);
       } catch (error) {
-        console.warn(`Erro ao migrar ${staticImagePaths[i]}:`, error);
+        console.warn(`Erro ao migrar ${image.url}:`, error);
       }
     }
   }
