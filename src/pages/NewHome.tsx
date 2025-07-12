@@ -198,10 +198,10 @@ export function NewHome() {
               </div>
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-12 sm:mt-16">
               <Link
                 to="/propostas"
-                className="inline-flex items-center gap-2 text-gray-900 hover:text-gray-700 font-semibold"
+                className="inline-flex items-center gap-2 text-gray-900 hover:text-gray-700 font-semibold text-base sm:text-lg transition-colors duration-200"
               >
                 Ver todas as propostas
                 <ArrowRight size={20} />
