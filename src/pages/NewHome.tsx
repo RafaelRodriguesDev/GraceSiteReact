@@ -115,24 +115,28 @@ export function NewHome() {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">10+</div>
-                <div className="text-gray-600 text-sm">Anos de experiência</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
+              <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+                  10+
+                </div>
+                <div className="text-gray-600 text-sm sm:text-base">
+                  Anos de experiência
+                </div>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+              <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
                   500+
                 </div>
-                <div className="text-gray-600 text-sm">
+                <div className="text-gray-600 text-sm sm:text-base">
                   Famílias fotografadas
                 </div>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+              <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300 sm:col-span-2 lg:col-span-1">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
                   100%
                 </div>
-                <div className="text-gray-600 text-sm">
+                <div className="text-gray-600 text-sm sm:text-base">
                   Clientes satisfeitos
                 </div>
               </div>
