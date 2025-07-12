@@ -157,41 +157,41 @@ export function NewHome() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              <div className="group bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 mx-auto w-full max-w-md sm:max-w-none">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors mx-auto">
                   <Heart className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
                   Ensaio Família
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-center">
                   Momentos únicos em família, capturando o amor e a conexão
                   entre vocês em cenários naturais e acolhedores.
                 </p>
               </div>
 
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
+              <div className="group bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 mx-auto w-full max-w-md sm:max-w-none">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors mx-auto">
                   <Camera className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
                   Eventos Especiais
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-center">
                   Casamentos, batizados, aniversários e outras celebrações
                   importantes da sua vida registradas com carinho.
                 </p>
               </div>
 
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
+              <div className="group bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 mx-auto w-full max-w-md sm:max-w-none sm:col-span-2 lg:col-span-1">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors mx-auto">
                   <Star className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
                   Festa Infantil
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-center">
                   A alegria e espontaneidade das crianças capturadas de forma
                   natural, preservando a magia da infância.
                 </p>
