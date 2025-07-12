@@ -145,13 +145,13 @@ export function NewHome() {
         </section>
 
         {/* Services Section */}
-        <section className="relative z-10 py-20 px-4 bg-white/90 backdrop-blur-sm">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
+        <section className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 bg-white/90 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                 Nossos Serviços
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto px-4">
                 Especializamos em capturar os momentos mais preciosos da sua
                 vida
               </p>
