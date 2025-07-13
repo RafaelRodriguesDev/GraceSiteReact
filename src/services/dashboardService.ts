@@ -19,6 +19,27 @@ export interface ScheduleWithDate extends Schedule {
 }
 
 export const dashboardService = {
+  // Testar conexão com banco de dados
+  async testConnection(): Promise<{ success: boolean; error?: string }> {
+    try {
+      const { error } = await supabase
+        .from("schedules")
+        .select("count(*)", { count: "exact", head: true });
+
+      if (error) throw error;
+
+      return { success: true };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      console.error("Erro na conexão com banco de dados:", errorMessage);
+      return {
+        success: false,
+        error: `Erro de conexão: ${errorMessage}`,
+      };
+    }
+  },
+
   // Buscar estatísticas do dashboard
   async getStats(): Promise<DashboardStats> {
     try {
