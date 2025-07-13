@@ -1,5 +1,6 @@
 import { supabase } from "../lib/supabase";
 import { Schedule, ScheduleStatus } from "../types/scheduling";
+import { logError, createUserErrorMessage } from "../utils/errorUtils";
 
 export interface DashboardStats {
   total: number;
