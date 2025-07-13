@@ -372,7 +372,7 @@ export function NewScheduling() {
             </div>
 
             <div
-              className={`flex items-center space-x-2 ${step === "confirmation" ? "text-gray-900" : "text-gray-400"}`}
+              className={`flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start ${step === "confirmation" ? "text-gray-900" : "text-gray-400"}`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${step === "confirmation" ? "bg-gray-900 text-white" : "bg-gray-200"}`}
