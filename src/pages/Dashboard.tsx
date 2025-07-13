@@ -22,6 +22,8 @@ import {
   Edit,
   MessageSquare,
   Camera,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { formatPhoneNumber } from "../utils/phoneUtils";
 
