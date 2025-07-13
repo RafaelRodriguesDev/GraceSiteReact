@@ -329,7 +329,7 @@ export function NewScheduling() {
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
             <div
-              className={`flex items-center space-x-2 ${step === "calendar" ? "text-gray-900" : step === "time" || step === "form" || step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
+              className={`flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start ${step === "calendar" ? "text-gray-900" : step === "time" || step === "form" || step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${step === "calendar" ? "bg-gray-900 text-white" : step === "time" || step === "form" || step === "confirmation" ? "bg-green-600 text-white" : "bg-gray-200"}`}
