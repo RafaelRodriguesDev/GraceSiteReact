@@ -95,6 +95,15 @@ export function Dashboard() {
   const loadData = async () => {
     try {
       setLoading(true);
+
+      // Test connection first
+      const connectionTest = await dashboardService.testConnection();
+      if (!connectionTest.success) {
+        throw new Error(
+          connectionTest.error || "Falha na conexão com banco de dados",
+        );
+      }
+
       const [statsData, schedulesData] = await Promise.all([
         dashboardService.getStats(),
         dashboardService.getSchedules(
