@@ -1,5 +1,5 @@
-import { supabase } from '../lib/supabase';
-import { Schedule, ScheduleStatus } from '../types/scheduling';
+import { supabase } from "../lib/supabase";
+import { Schedule, ScheduleStatus } from "../types/scheduling";
 
 export interface DashboardStats {
   total: number;
@@ -23,8 +23,8 @@ export const dashboardService = {
   async getStats(): Promise<DashboardStats> {
     try {
       const { data: schedules, error } = await supabase
-        .from('schedules')
-        .select('status');
+        .from("schedules")
+        .select("status");
 
       if (error) throw error;
 
@@ -32,31 +32,43 @@ export const dashboardService = {
         (acc, schedule) => {
           acc.total++;
           switch (schedule.status) {
-            case 'pending':
+            case "pending":
               acc.pending++;
               break;
-            case 'confirmed':
+            case "confirmed":
               acc.confirmed++;
               break;
-            case 'cancelled':
+            case "cancelled":
               acc.cancelled++;
               break;
-            case 'completed':
+            case "completed":
               acc.completed++;
               break;
-            case 'awaiting_reschedule':
+            case "awaiting_reschedule":
               acc.awaiting_reschedule++;
               break;
           }
           return acc;
         },
-        { total: 0, pending: 0, confirmed: 0, cancelled: 0, completed: 0, awaiting_reschedule: 0 }
+        {
+          total: 0,
+          pending: 0,
+          confirmed: 0,
+          cancelled: 0,
+          completed: 0,
+          awaiting_reschedule: 0,
+        },
       );
 
       return stats;
     } catch (error) {
-      console.error('Erro ao buscar estatísticas:', error);
-      return { total: 0, pending: 0, confirmed: 0, cancelled: 0, completed: 0, awaiting_reschedule: 0 };
+      console.error(
+        "Erro ao buscar estatísticas:",
+        error instanceof Error ? error.message : String(error),
+      );
+      throw new Error(
+        `Erro ao buscar estatísticas: ${error instanceof Error ? error.message : "Erro desconhecido"}`,
+      );
     }
   },
 
@@ -64,24 +76,26 @@ export const dashboardService = {
   async getSchedules(
     status?: ScheduleStatus,
     limit: number = 50,
-    offset: number = 0
+    offset: number = 0,
   ): Promise<ScheduleWithDate[]> {
     try {
       let query = supabase
-        .from('schedules')
-        .select(`
+        .from("schedules")
+        .select(
+          `
           *,
           available_date:available_dates(
             date,
             start_time,
             end_time
           )
-        `)
-        .order('created_at', { ascending: false })
+        `,
+        )
+        .order("created_at", { ascending: false })
         .range(offset, offset + limit - 1);
 
       if (status) {
-        query = query.eq('status', status);
+        query = query.eq("status", status);
       }
 
       const { data, error } = await query;
@@ -90,7 +104,7 @@ export const dashboardService = {
 
       return data || [];
     } catch (error) {
-      console.error('Erro ao buscar agendamentos:', error);
+      console.error("Erro ao buscar agendamentos:", error);
       return [];
     }
   },
@@ -102,24 +116,26 @@ export const dashboardService = {
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
       const { data, error } = await supabase
-        .from('schedules')
-        .select(`
+        .from("schedules")
+        .select(
+          `
           *,
           available_date:available_dates(
             date,
             start_time,
             end_time
           )
-        `)
-        .gte('created_at', sevenDaysAgo.toISOString())
-        .order('created_at', { ascending: false })
+        `,
+        )
+        .gte("created_at", sevenDaysAgo.toISOString())
+        .order("created_at", { ascending: false })
         .limit(10);
 
       if (error) throw error;
 
       return data || [];
     } catch (error) {
-      console.error('Erro ao buscar agendamentos recentes:', error);
+      console.error("Erro ao buscar agendamentos recentes:", error);
       return [];
     }
   },
@@ -127,25 +143,25 @@ export const dashboardService = {
   // Atualizar status do agendamento
   async updateScheduleStatus(
     scheduleId: string,
-    status: ScheduleStatus
+    status: ScheduleStatus,
   ): Promise<{ success: boolean; error?: string }> {
     try {
       const { error } = await supabase
-        .from('schedules')
-        .update({ 
+        .from("schedules")
+        .update({
           status,
-          updated_at: new Date().toISOString()
+          updated_at: new Date().toISOString(),
         })
-        .eq('id', scheduleId);
+        .eq("id", scheduleId);
 
       if (error) throw error;
 
       return { success: true };
     } catch (error) {
-      console.error('Erro ao atualizar status:', error);
-      return { 
-        success: false, 
-        error: 'Erro ao atualizar status do agendamento'
+      console.error("Erro ao atualizar status:", error);
+      return {
+        success: false,
+        error: "Erro ao atualizar status do agendamento",
       };
     }
   },
@@ -154,23 +170,25 @@ export const dashboardService = {
   async getScheduleById(scheduleId: string): Promise<ScheduleWithDate | null> {
     try {
       const { data, error } = await supabase
-        .from('schedules')
-        .select(`
+        .from("schedules")
+        .select(
+          `
           *,
           available_date:available_dates(
             date,
             start_time,
             end_time
           )
-        `)
-        .eq('id', scheduleId)
+        `,
+        )
+        .eq("id", scheduleId)
         .single();
 
       if (error) throw error;
 
       return data;
     } catch (error) {
-      console.error('Erro ao buscar agendamento:', error);
+      console.error("Erro ao buscar agendamento:", error);
       return null;
     }
   },
@@ -179,54 +197,58 @@ export const dashboardService = {
   async getSchedulesByDate(date: string): Promise<ScheduleWithDate[]> {
     try {
       const { data, error } = await supabase
-        .from('schedules')
-        .select(`
+        .from("schedules")
+        .select(
+          `
           *,
           available_date:available_dates(
             date,
             start_time,
             end_time
           )
-        `)
-        .eq('preferred_date', date)
-        .order('preferred_time', { ascending: true });
+        `,
+        )
+        .eq("preferred_date", date)
+        .order("preferred_time", { ascending: true });
 
       if (error) throw error;
 
       return data || [];
     } catch (error) {
-      console.error('Erro ao buscar agendamentos por data:', error);
+      console.error("Erro ao buscar agendamentos por data:", error);
       return [];
     }
   },
 
   // Buscar agendamentos pendentes
   async getPendingSchedules(): Promise<ScheduleWithDate[]> {
-    return this.getSchedules('pending');
+    return this.getSchedules("pending");
   },
 
   // Buscar agendamentos confirmados
   async getConfirmedSchedules(): Promise<ScheduleWithDate[]> {
-    return this.getSchedules('confirmed');
+    return this.getSchedules("confirmed");
   },
 
   // Deletar agendamento (apenas para casos extremos)
-  async deleteSchedule(scheduleId: string): Promise<{ success: boolean; error?: string }> {
+  async deleteSchedule(
+    scheduleId: string,
+  ): Promise<{ success: boolean; error?: string }> {
     try {
       const { error } = await supabase
-        .from('schedules')
+        .from("schedules")
         .delete()
-        .eq('id', scheduleId);
+        .eq("id", scheduleId);
 
       if (error) throw error;
 
       return { success: true };
     } catch (error) {
-      console.error('Erro ao deletar agendamento:', error);
-      return { 
-        success: false, 
-        error: 'Erro ao deletar agendamento'
+      console.error("Erro ao deletar agendamento:", error);
+      return {
+        success: false,
+        error: "Erro ao deletar agendamento",
       };
     }
-  }
+  },
 };
