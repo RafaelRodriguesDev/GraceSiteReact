@@ -266,10 +266,12 @@ export const dashboardService = {
 
       return { success: true };
     } catch (error) {
-      console.error("Erro ao deletar agendamento:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      console.error("Erro ao deletar agendamento:", errorMessage);
       return {
         success: false,
-        error: "Erro ao deletar agendamento",
+        error: `Erro ao deletar agendamento: ${errorMessage}`,
       };
     }
   },
