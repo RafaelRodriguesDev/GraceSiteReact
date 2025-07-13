@@ -96,7 +96,12 @@ export function NewScheduling() {
       setEvents(calendarEvents);
     } catch (error) {
       console.error("Erro ao carregar eventos:", error);
-      alert("Erro ao carregar calendário. Tente recarregar a página.");
+      // Usar a mensagem de erro personalizada se disponível
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Erro ao carregar calendário. Tente recarregar a página.";
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -322,9 +327,9 @@ export function NewScheduling() {
       {/* Progress Steps */}
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-center space-x-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
             <div
-              className={`flex items-center space-x-2 ${step === "calendar" ? "text-gray-900" : step === "time" || step === "form" || step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
+              className={`flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start ${step === "calendar" ? "text-gray-900" : step === "time" || step === "form" || step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${step === "calendar" ? "bg-gray-900 text-white" : step === "time" || step === "form" || step === "confirmation" ? "bg-green-600 text-white" : "bg-gray-200"}`}
@@ -341,7 +346,7 @@ export function NewScheduling() {
             </div>
 
             <div
-              className={`flex items-center space-x-2 ${step === "time" ? "text-gray-900" : step === "form" || step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
+              className={`flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start ${step === "time" ? "text-gray-900" : step === "form" || step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${step === "time" ? "bg-gray-900 text-white" : step === "form" || step === "confirmation" ? "bg-green-600 text-white" : "bg-gray-200"}`}
@@ -356,7 +361,7 @@ export function NewScheduling() {
             </div>
 
             <div
-              className={`flex items-center space-x-2 ${step === "form" ? "text-gray-900" : step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
+              className={`flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start ${step === "form" ? "text-gray-900" : step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${step === "form" ? "bg-gray-900 text-white" : step === "confirmation" ? "bg-green-600 text-white" : "bg-gray-200"}`}
@@ -367,7 +372,7 @@ export function NewScheduling() {
             </div>
 
             <div
-              className={`flex items-center space-x-2 ${step === "confirmation" ? "text-gray-900" : "text-gray-400"}`}
+              className={`flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start ${step === "confirmation" ? "text-gray-900" : "text-gray-400"}`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${step === "confirmation" ? "bg-gray-900 text-white" : "bg-gray-200"}`}
