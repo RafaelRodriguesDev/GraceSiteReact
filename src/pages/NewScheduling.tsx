@@ -361,7 +361,7 @@ export function NewScheduling() {
             </div>
 
             <div
-              className={`flex items-center space-x-2 ${step === "form" ? "text-gray-900" : step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
+              className={`flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start ${step === "form" ? "text-gray-900" : step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${step === "form" ? "bg-gray-900 text-white" : step === "confirmation" ? "bg-green-600 text-white" : "bg-gray-200"}`}
