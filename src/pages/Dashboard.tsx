@@ -105,7 +105,21 @@ export function Dashboard() {
       setStats(statsData);
       setSchedules(schedulesData);
     } catch (error) {
-      console.error("Erro ao carregar dados:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      console.error("Erro ao carregar dados:", errorMessage);
+      alert(`Erro ao carregar dados do dashboard: ${errorMessage}`);
+
+      // Set default values in case of error
+      setStats({
+        total: 0,
+        pending: 0,
+        confirmed: 0,
+        cancelled: 0,
+        completed: 0,
+        awaiting_reschedule: 0,
+      });
+      setSchedules([]);
     } finally {
       setLoading(false);
     }
