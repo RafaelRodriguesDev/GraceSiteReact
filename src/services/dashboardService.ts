@@ -104,8 +104,13 @@ export const dashboardService = {
 
       return data || [];
     } catch (error) {
-      console.error("Erro ao buscar agendamentos:", error);
-      return [];
+      console.error(
+        "Erro ao buscar agendamentos:",
+        error instanceof Error ? error.message : String(error),
+      );
+      throw new Error(
+        `Erro ao buscar agendamentos: ${error instanceof Error ? error.message : "Erro desconhecido"}`,
+      );
     }
   },
 
