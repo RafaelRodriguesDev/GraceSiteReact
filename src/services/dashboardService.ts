@@ -168,10 +168,12 @@ export const dashboardService = {
 
       return { success: true };
     } catch (error) {
-      console.error("Erro ao atualizar status:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      console.error("Erro ao atualizar status:", errorMessage);
       return {
         success: false,
-        error: "Erro ao atualizar status do agendamento",
+        error: `Erro ao atualizar status: ${errorMessage}`,
       };
     }
   },
