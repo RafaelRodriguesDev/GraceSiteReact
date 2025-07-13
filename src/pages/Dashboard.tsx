@@ -95,15 +95,6 @@ export function Dashboard() {
   const loadData = async () => {
     try {
       setLoading(true);
-
-      // Test connection first
-      const connectionTest = await dashboardService.testConnection();
-      if (!connectionTest.success) {
-        throw new Error(
-          connectionTest.error || "Falha na conexão com banco de dados",
-        );
-      }
-
       const [statsData, schedulesData] = await Promise.all([
         dashboardService.getStats(),
         dashboardService.getSchedules(
@@ -114,21 +105,7 @@ export function Dashboard() {
       setStats(statsData);
       setSchedules(schedulesData);
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      console.error("Erro ao carregar dados:", errorMessage);
-      alert(`Erro ao carregar dados do dashboard: ${errorMessage}`);
-
-      // Set default values in case of error
-      setStats({
-        total: 0,
-        pending: 0,
-        confirmed: 0,
-        cancelled: 0,
-        completed: 0,
-        awaiting_reschedule: 0,
-      });
-      setSchedules([]);
+      console.error("Erro ao carregar dados:", error);
     } finally {
       setLoading(false);
     }
