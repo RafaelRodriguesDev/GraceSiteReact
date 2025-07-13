@@ -82,12 +82,9 @@ export const dashboardService = {
 
       return stats;
     } catch (error) {
-      console.error(
-        "Erro ao buscar estatísticas:",
-        error instanceof Error ? error.message : String(error),
-      );
+      logError("Erro ao buscar estatísticas", error);
       throw new Error(
-        `Erro ao buscar estatísticas: ${error instanceof Error ? error.message : "Erro desconhecido"}`,
+        createUserErrorMessage("Erro ao buscar estatísticas", error),
       );
     }
   },
