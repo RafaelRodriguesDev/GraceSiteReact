@@ -96,7 +96,12 @@ export function NewScheduling() {
       setEvents(calendarEvents);
     } catch (error) {
       console.error("Erro ao carregar eventos:", error);
-      alert("Erro ao carregar calendário. Tente recarregar a página.");
+      // Usar a mensagem de erro personalizada se disponível
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Erro ao carregar calendário. Tente recarregar a página.";
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }
