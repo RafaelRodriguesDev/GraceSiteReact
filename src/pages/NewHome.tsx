@@ -63,9 +63,9 @@ export function NewHome() {
       {/* Scrollable Content */}
       <div className="relative z-10 h-full overflow-y-auto lg:overflow-visible pb-safe">
         {/* Hero Section */}
-        <section className="min-h-screen lg:min-h-screen flex items-center justify-center px-4 py-safe">
+        <section className="min-h-screen lg:min-h-screen flex items-center justify-center px-4 sm:px-6 py-safe">
           <div
-            className={`text-center max-w-4xl mx-auto transform transition-all duration-1000 ${
+            className={`text-center max-w-5xl mx-auto transform transition-all duration-1000 ${
               isVisible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-10 opacity-0"
@@ -115,24 +115,28 @@ export function NewHome() {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">10+</div>
-                <div className="text-gray-600 text-sm">Anos de experiência</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto px-4 sm:px-0">
+              <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+                  10+
+                </div>
+                <div className="text-gray-600 text-sm sm:text-base">
+                  Anos de experiência
+                </div>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+              <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
                   500+
                 </div>
-                <div className="text-gray-600 text-sm">
+                <div className="text-gray-600 text-sm sm:text-base">
                   Famílias fotografadas
                 </div>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+              <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300 sm:col-span-2 lg:col-span-1">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
                   100%
                 </div>
-                <div className="text-gray-600 text-sm">
+                <div className="text-gray-600 text-sm sm:text-base">
                   Clientes satisfeitos
                 </div>
               </div>
@@ -141,63 +145,63 @@ export function NewHome() {
         </section>
 
         {/* Services Section */}
-        <section className="relative z-10 py-20 px-4 bg-white/90 backdrop-blur-sm">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
+        <section className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 bg-white/90 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                 Nossos Serviços
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto px-4">
                 Especializamos em capturar os momentos mais preciosos da sua
                 vida
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              <div className="group bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 mx-auto w-full max-w-md sm:max-w-none">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors mx-auto">
                   <Heart className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
                   Ensaio Família
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-center">
                   Momentos únicos em família, capturando o amor e a conexão
                   entre vocês em cenários naturais e acolhedores.
                 </p>
               </div>
 
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
+              <div className="group bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 mx-auto w-full max-w-md sm:max-w-none">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors mx-auto">
                   <Camera className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
                   Eventos Especiais
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-center">
                   Casamentos, batizados, aniversários e outras celebrações
                   importantes da sua vida registradas com carinho.
                 </p>
               </div>
 
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors">
+              <div className="group bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 mx-auto w-full max-w-md sm:max-w-none sm:col-span-2 lg:col-span-1">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-gray-900 transition-colors mx-auto">
                   <Star className="h-8 w-8 text-gray-700 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
                   Festa Infantil
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-center">
                   A alegria e espontaneidade das crianças capturadas de forma
                   natural, preservando a magia da infância.
                 </p>
               </div>
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-12 sm:mt-16">
               <Link
                 to="/propostas"
-                className="inline-flex items-center gap-2 text-gray-900 hover:text-gray-700 font-semibold"
+                className="inline-flex items-center gap-2 text-gray-900 hover:text-gray-700 font-semibold text-base sm:text-lg transition-colors duration-200"
               >
                 Ver todas as propostas
                 <ArrowRight size={20} />

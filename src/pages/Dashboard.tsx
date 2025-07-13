@@ -22,6 +22,8 @@ import {
   Edit,
   MessageSquare,
   Camera,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { formatPhoneNumber } from "../utils/phoneUtils";
 
@@ -80,6 +82,7 @@ export function Dashboard() {
     "all",
   );
   const [refreshing, setRefreshing] = useState(false);
+  const [statsExpanded, setStatsExpanded] = useState(false);
 
   // Estados para modais
   const [showCancelModal, setShowCancelModal] = useState(false);
@@ -484,117 +487,268 @@ export function Dashboard() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <Calendar className="h-8 w-8 text-gray-600" />
+        <div className="mb-8">
+          {/* Desktop view - always expanded */}
+          <div className="hidden lg:grid lg:grid-cols-6 gap-6">
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <Calendar className="h-8 w-8 text-gray-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Total</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {stats.total}
+                  </p>
+                </div>
               </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total</p>
-                <p className="text-2xl font-bold text-gray-900">
-                  {stats.total}
-                </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <AlertCircle className="h-8 w-8 text-yellow-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Pendentes</p>
+                  <p className="text-2xl font-bold text-yellow-600">
+                    {stats.pending}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="h-8 w-8 text-green-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">
+                    Confirmados
+                  </p>
+                  <p className="text-2xl font-bold text-green-600">
+                    {stats.confirmed}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <Edit className="h-8 w-8 text-orange-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">
+                    Aguardando Reagendamento
+                  </p>
+                  <p className="text-2xl font-bold text-orange-600">
+                    {stats.awaiting_reschedule}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <XCircle className="h-8 w-8 text-red-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">
+                    Cancelados
+                  </p>
+                  <p className="text-2xl font-bold text-red-600">
+                    {stats.cancelled}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="h-8 w-8 text-blue-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">
+                    Concluídos
+                  </p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {stats.completed}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <AlertCircle className="h-8 w-8 text-yellow-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Pendentes</p>
-                <p className="text-2xl font-bold text-yellow-600">
-                  {stats.pending}
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Mobile/Tablet view - collapsible */}
+          <div className="lg:hidden">
+            <div className="bg-white rounded-lg shadow">
+              {/* Compact view header */}
+              <button
+                onClick={() => setStatsExpanded(!statsExpanded)}
+                className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center space-x-4">
+                  <h3 className="text-lg font-medium text-gray-900">Resumo</h3>
+                  {/* Compact icons row */}
+                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="h-5 w-5 text-gray-600" />
+                      <span className="text-sm font-semibold text-gray-900">
+                        {stats.total}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <AlertCircle className="h-5 w-5 text-yellow-600" />
+                      <span className="text-sm font-semibold text-yellow-600">
+                        {stats.pending}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <CheckCircle className="h-5 w-5 text-green-600" />
+                      <span className="text-sm font-semibold text-green-600">
+                        {stats.confirmed}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                {statsExpanded ? (
+                  <ChevronUp className="h-5 w-5 text-gray-400" />
+                ) : (
+                  <ChevronDown className="h-5 w-5 text-gray-400" />
+                )}
+              </button>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <CheckCircle className="h-8 w-8 text-green-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Confirmados</p>
-                <p className="text-2xl font-bold text-green-600">
-                  {stats.confirmed}
-                </p>
-              </div>
-            </div>
-          </div>
+              {/* Expanded view */}
+              {statsExpanded && (
+                <div className="border-t border-gray-200 p-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <Calendar className="h-6 w-6 text-gray-600" />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-xs font-medium text-gray-600">
+                            Total
+                          </p>
+                          <p className="text-xl font-bold text-gray-900">
+                            {stats.total}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <Edit className="h-8 w-8 text-orange-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">
-                  Aguardando Reagendamento
-                </p>
-                <p className="text-2xl font-bold text-orange-600">
-                  {stats.awaiting_reschedule}
-                </p>
-              </div>
-            </div>
-          </div>
+                    <div className="bg-yellow-50 rounded-lg p-4">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <AlertCircle className="h-6 w-6 text-yellow-600" />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-xs font-medium text-gray-600">
+                            Pendentes
+                          </p>
+                          <p className="text-xl font-bold text-yellow-600">
+                            {stats.pending}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <XCircle className="h-8 w-8 text-red-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Cancelados</p>
-                <p className="text-2xl font-bold text-red-600">
-                  {stats.cancelled}
-                </p>
-              </div>
-            </div>
-          </div>
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <CheckCircle className="h-6 w-6 text-green-600" />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-xs font-medium text-gray-600">
+                            Confirmados
+                          </p>
+                          <p className="text-xl font-bold text-green-600">
+                            {stats.confirmed}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <CheckCircle className="h-8 w-8 text-blue-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Concluídos</p>
-                <p className="text-2xl font-bold text-blue-600">
-                  {stats.completed}
-                </p>
-              </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <Edit className="h-6 w-6 text-orange-600" />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-xs font-medium text-gray-600">
+                            Aguardando
+                          </p>
+                          <p className="text-xl font-bold text-orange-600">
+                            {stats.awaiting_reschedule}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-red-50 rounded-lg p-4">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <XCircle className="h-6 w-6 text-red-600" />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-xs font-medium text-gray-600">
+                            Cancelados
+                          </p>
+                          <p className="text-xl font-bold text-red-600">
+                            {stats.cancelled}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <CheckCircle className="h-6 w-6 text-blue-600" />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-xs font-medium text-gray-600">
+                            Concluídos
+                          </p>
+                          <p className="text-xl font-bold text-blue-600">
+                            {stats.completed}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Filters */}
         <div className="bg-white rounded-lg shadow mb-6">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <div className="flex items-center justify-between">
+          <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <h2 className="text-lg font-medium text-gray-900">
                 Agendamentos
               </h2>
 
               <div className="flex items-center space-x-2">
-                <Filter className="h-4 w-4 text-gray-500" />
+                <Filter className="h-4 w-4 text-gray-500 flex-shrink-0" />
                 <select
                   value={filterStatus}
                   onChange={(e) =>
                     setFilterStatus(e.target.value as ScheduleStatus | "all")
                   }
-                  className="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="flex-1 sm:flex-none border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 min-w-0"
                 >
                   <option value="all">Todos</option>
                   <option value="pending">Pendentes</option>
                   <option value="confirmed">Confirmados</option>
-                  <option value="awaiting_reschedule">
-                    Aguardando Reagendamento
-                  </option>
+                  <option value="awaiting_reschedule">Reagendamento</option>
                   <option value="cancelled">Cancelados</option>
                   <option value="completed">Concluídos</option>
                 </select>
