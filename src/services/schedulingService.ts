@@ -204,30 +204,50 @@ export const schedulingService = {
     startDate: Date,
     endDate: Date,
   ): Promise<Schedule[]> {
-    const cacheKey = `${CACHE_KEYS.SCHEDULES}_${startDate.toISOString()}_${endDate.toISOString()}`;
-    const cachedData = cacheManager.get(cacheKey);
+    try {
+      const cacheKey = `${CACHE_KEYS.SCHEDULES}_${startDate.toISOString()}_${endDate.toISOString()}`;
+      const cachedData = cacheManager.get(cacheKey);
 
-    if (cachedData) {
-      return cachedData;
+      if (cachedData) {
+        return cachedData;
+      }
+
+      const { data, error } = await supabase
+        .from("schedules")
+        .select(
+          `
+          *,
+          available_dates!inner(*)
+        `,
+        )
+        .gte("available_dates.date", startDate.toISOString().split("T")[0])
+        .lte("available_dates.date", endDate.toISOString().split("T")[0]);
+
+      if (error) {
+        console.error("Supabase error in getSchedulesByDateRange:", error);
+        throw new Error(`Erro ao carregar agendamentos: ${error.message}`);
+      }
+
+      const result = data || [];
+
+      // Tentar cachear o resultado (falhará silenciosamente se localStorage não estiver disponível)
+      cacheManager.set(cacheKey, result);
+
+      return result;
+    } catch (error) {
+      console.error("Error in getSchedulesByDateRange:", error);
+      // Se for um erro conhecido, relança com a mensagem original
+      if (
+        error instanceof Error &&
+        error.message.includes("Erro ao carregar")
+      ) {
+        throw error;
+      }
+      // Caso contrário, cria uma mensagem de erro mais amigável
+      throw new Error(
+        "Erro ao carregar agendamentos. Tente novamente em alguns instantes.",
+      );
     }
-    const { data, error } = await supabase
-      .from("schedules")
-      .select(
-        `
-        *,
-        available_dates!inner(*)
-      `,
-      )
-      .gte("available_dates.date", startDate.toISOString().split("T")[0])
-      .lte("available_dates.date", endDate.toISOString().split("T")[0]);
-
-    if (error) throw error;
-
-    if (data) {
-      cacheManager.set(cacheKey, data);
-    }
-
-    return data;
   },
 };
 
