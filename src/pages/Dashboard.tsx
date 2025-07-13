@@ -82,6 +82,7 @@ export function Dashboard() {
     "all",
   );
   const [refreshing, setRefreshing] = useState(false);
+  const [statsExpanded, setStatsExpanded] = useState(false);
 
   // Estados para modais
   const [showCancelModal, setShowCancelModal] = useState(false);
