@@ -31,12 +31,10 @@ export const dashboardService = {
 
       return { success: true };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      console.error("Erro na conexão com banco de dados:", errorMessage);
+      logError("Erro na conexão com banco de dados", error);
       return {
         success: false,
-        error: `Erro de conexão: ${errorMessage}`,
+        error: createUserErrorMessage("Erro de conexão", error),
       };
     }
   },
