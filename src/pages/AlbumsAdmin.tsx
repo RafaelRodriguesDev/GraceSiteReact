@@ -283,10 +283,10 @@ export default function AlbumsAdmin() {
         // Lista de Álbuns
         <div className="space-y-8">
           {/* Header com botão de adicionar */}
-          <div className="bg-white rounded-xl shadow-sm p-8">
-            <div className="flex justify-between items-center">
+          <div className="bg-white rounded-xl shadow-sm p-4 sm:p-8">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
                   Álbuns de Fotos
                 </h2>
                 <p className="text-gray-600 mt-1">
@@ -295,9 +295,9 @@ export default function AlbumsAdmin() {
               </div>
               <button
                 onClick={() => setShowForm(true)}
-                className="flex items-center px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+                className="flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors text-sm sm:text-base"
               >
-                <Plus className="h-5 w-5 mr-2" />
+                <Plus className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Novo Álbum
               </button>
             </div>
