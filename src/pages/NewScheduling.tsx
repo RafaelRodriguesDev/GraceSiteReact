@@ -327,7 +327,7 @@ export function NewScheduling() {
       {/* Progress Steps */}
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-center space-x-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
             <div
               className={`flex items-center space-x-2 ${step === "calendar" ? "text-gray-900" : step === "time" || step === "form" || step === "confirmation" ? "text-green-600" : "text-gray-400"}`}
             >
