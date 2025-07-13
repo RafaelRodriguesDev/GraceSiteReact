@@ -95,26 +95,46 @@ export const availableDatesService = {
     startDate: Date,
     endDate: Date,
   ): Promise<AvailableDate[]> {
-    const cacheKey = `${CACHE_KEYS.AVAILABLE_DATES}_${startDate.toISOString()}_${endDate.toISOString()}`;
-    const cachedData = cacheManager.get(cacheKey);
+    try {
+      const cacheKey = `${CACHE_KEYS.AVAILABLE_DATES}_${startDate.toISOString()}_${endDate.toISOString()}`;
+      const cachedData = cacheManager.get(cacheKey);
 
-    if (cachedData) {
-      return cachedData;
+      if (cachedData) {
+        return cachedData;
+      }
+
+      const { data, error } = await supabase
+        .from("available_dates")
+        .select("*")
+        .gte("date", startDate.toISOString().split("T")[0])
+        .lte("date", endDate.toISOString().split("T")[0])
+        .order("date", { ascending: true });
+
+      if (error) {
+        console.error("Supabase error in getAvailableDates:", error);
+        throw new Error(`Erro ao carregar datas disponíveis: ${error.message}`);
+      }
+
+      const result = data || [];
+
+      // Tentar cachear o resultado (falhará silenciosamente se localStorage não estiver disponível)
+      cacheManager.set(cacheKey, result);
+
+      return result;
+    } catch (error) {
+      console.error("Error in getAvailableDates:", error);
+      // Se for um erro conhecido, relança com a mensagem original
+      if (
+        error instanceof Error &&
+        error.message.includes("Erro ao carregar")
+      ) {
+        throw error;
+      }
+      // Caso contrário, cria uma mensagem de erro mais amigável
+      throw new Error(
+        "Erro ao carregar eventos. Tente novamente em alguns instantes.",
+      );
     }
-    const { data, error } = await supabase
-      .from("available_dates")
-      .select("*")
-      .gte("date", startDate.toISOString().split("T")[0])
-      .lte("date", endDate.toISOString().split("T")[0])
-      .order("date", { ascending: true });
-
-    if (error) throw error;
-
-    if (data) {
-      cacheManager.set(cacheKey, data);
-    }
-
-    return data;
   },
 
   async createAvailableDate(date: AvailableDate): Promise<AvailableDate> {
