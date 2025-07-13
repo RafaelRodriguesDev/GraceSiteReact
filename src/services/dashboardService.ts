@@ -1,6 +1,5 @@
 import { supabase } from "../lib/supabase";
 import { Schedule, ScheduleStatus } from "../types/scheduling";
-import { logError, createUserErrorMessage } from "../utils/errorUtils";
 
 export interface DashboardStats {
   total: number;
@@ -31,10 +30,12 @@ export const dashboardService = {
 
       return { success: true };
     } catch (error) {
-      logError("Erro na conexão com banco de dados", error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      console.error("Erro na conexão com banco de dados:", errorMessage);
       return {
         success: false,
-        error: createUserErrorMessage("Erro de conexão", error),
+        error: `Erro de conexão: ${errorMessage}`,
       };
     }
   },
@@ -82,9 +83,12 @@ export const dashboardService = {
 
       return stats;
     } catch (error) {
-      logError("Erro ao buscar estatísticas", error);
+      console.error(
+        "Erro ao buscar estatísticas:",
+        error instanceof Error ? error.message : String(error),
+      );
       throw new Error(
-        createUserErrorMessage("Erro ao buscar estatísticas", error),
+        `Erro ao buscar estatísticas: ${error instanceof Error ? error.message : "Erro desconhecido"}`,
       );
     }
   },
@@ -121,9 +125,12 @@ export const dashboardService = {
 
       return data || [];
     } catch (error) {
-      logError("Erro ao buscar agendamentos", error);
+      console.error(
+        "Erro ao buscar agendamentos:",
+        error instanceof Error ? error.message : String(error),
+      );
       throw new Error(
-        createUserErrorMessage("Erro ao buscar agendamentos", error),
+        `Erro ao buscar agendamentos: ${error instanceof Error ? error.message : "Erro desconhecido"}`,
       );
     }
   },
